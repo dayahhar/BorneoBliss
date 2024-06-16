@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css">
+        <script>
+            function validateForm() {
+                var username = document.forms["registrationForm"]["username"].value;
+                var password = document.forms["registrationForm"]["password"].value;
+                if (username == "" || password == "") {
+                    alert("Username and password must be filled out");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Wildlife Conservation Management System</h1>
+        </header>
+        <div class="container">
+            <h2>Registration</h2>
+            <form name="registrationForm" action="register_process.html" method="post" onsubmit="return validateForm()">
+                Username: <input type="text" name="username"><br>
+                Password: <input type="password" name="password"><br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

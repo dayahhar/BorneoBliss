@@ -1,0 +1,44 @@
+Model (Class)
+ ⁃ Observer.java
+ ⁃ Species.java
+ ⁃ Habitat.java
+ ⁃ Location.java
+ ⁃ Observation.java
+
+ Controller (Servlet)
+ ⁃ signup.java
+ ⁃ login.java
+ ⁃ dashboard.java
+ ⁃ addSpecies.java
+ ⁃ addHabitat.java
+ ⁃ addLocation.java
+ ⁃ addObservation.java
+ ⁃ updateObserver.java
+ ⁃ updateSpecies.java
+ ⁃ updateHabitat.java
+ ⁃ updateLocation.java
+ ⁃ updateObservation.java
+ ⁃ deleteSpecies. java
+ ⁃ deleteHabitat.java
+ ⁃ deleteLocation.java
+ ⁃ deleteObservation.java
+ ⁃ logout.java
+
+ View (JSP/HTML)
+ ⁃ home.html
+ ⁃ signup.jsp
+ ⁃ login.jsp
+ ⁃ dashboard.jsp
+ ⁃ speciesList.jsp
+ ⁃ habitatList.jsp
+ ⁃ locationList.jsp
+ ⁃ observationList.jsp
+ ⁃ addSpecies.jsp
+ ⁃ addHabitat.jsp
+ ⁃ addLocation.jsp
+ ⁃ addObservation.jsp
+ ⁃ updateObserver.jsp
+ ⁃ updateSpecies.jsp
+ ⁃ updateHabitat.jsp
+ ⁃ updateLocation.jsp
+ ⁃ updateObservation.jsp

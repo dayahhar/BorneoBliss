@@ -34,7 +34,7 @@ password="app"/>
     </head>
     <body>
         <nav>
-            <a href="index.html">
+            <a href="index.jsp">
                 <div class="logo-placeholder">
                     <img src="images/logo.png" alt="Wildlife Watch Logo">
                 </div>
@@ -51,7 +51,7 @@ password="app"/>
                 <sql:query var="result" dataSource="${WildlifeDB}">
                     SELECT * FROM SPECIES
                 </sql:query>
-        
+                    
                 <div class="filter-section">
                     <label for="status-filter">Filter by Conservation Status:</label>
                     <select id="status-filter">
@@ -63,35 +63,35 @@ password="app"/>
                     <label for="species-filter">Filter by Species:</label>
                     <input type="text" id="species-filter">
                     <button>Apply Filters</button>
-                </div>
-            <table class="species-table">
-                <thead>
-                    <tr>
-                        <th>Species ID</th>
-                        <th>Species Name</th>
-                        <th>Conservation Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="species" items="${result.rows}">
+                </div>   
+
+                <table class="species-table">
+                    <thead>
                         <tr>
-                            <td><c:out value = "${species.speciesID}"/></td>
-                            <td><c:out value = "${species.speciesName}"/></td>
-                            <td><c:out value = "${species.conservationStatus}"/></td>
-                            <td>
-                                <a href="javascript:void(0);" onclick="confirmDelete('${species.speciesID}')">Delete</a>
-                            </td>
+                            <th>Species ID</th>
+                            <th>Species Name</th>
+                            <th>Conservation Status</th>
+                            <th>Action</th>
                         </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="species" items="${result.rows}">
+                            <tr>
+                                <td><c:out value = "${species.speciesID}"/></td>
+                                <td><c:out value = "${species.speciesName}"/></td>
+                                <td><c:out value = "${species.conservationStatus}"/></td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="confirmDelete('${species.speciesID}')">Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
                             
         <footer>
             <p>&copy; 2024 Wildlife Watch. All rights reserved.</p>
         </footer>
-    </div>
     </body>
 </html>

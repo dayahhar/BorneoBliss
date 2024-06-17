@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<sql:setDataSource var="myDatasource"
+driver="org.apache.derby.jdbc.ClientDriver"
+url="jdbc:derby://localhost:1527/WildlifeDB" user="app" password="app"/>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,37 +29,43 @@
                 </div>
             </a>
             <ul class="nav-links">
-                <li><a href="logout.html">Logout</a></li>
+                <li><a href="logout.jsp">Logout</a></li>
             </ul>
         </nav>
         
         <div class="container">
             <div class="add-card">
-                <h2><b>Add Species Data</b></h2>
-                
-                <div class="input-group">
-                    <label for="species-id">Species ID:</label>
-                    <input type="text" id="species-id" name="speciesID" required>
-                </div>
-                <div class="input-group">
-                    <label for="species-name">Species Name:</label>
-                    <input type="text" id="species-name" name="speciesName" required>
-                </div>
-                <div class="input-group">
-                    <label for="conservation-status">Conservation Status:</label>
-                    <select id="conservation-status" name="conservationStatus" required>
-                        <option value="Critically Endangered">Critically Endangered</option>
-                        <option value="Endangered">Endangered</option>
-                        <option value="Least Concern">Least Concern</option>
-                    </select>
-                </div>
-                <button type="submit">Add Species</button>
-                
+                <h2>Add Species Data</h2>
+                <form action="addSpecies" method="post">
+                    <div class="input-group">
+                        <label for="species-id">Species ID:</label>
+                        <input type="text" id="species-id" name="speciesID" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="species-name">Species Name:</label>
+                        <input type="text" id="species-name" name="speciesName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="conservation-status">Conservation Status:</label>
+                        <select id="conservation-status" name="conservationStatus" required>
+                            <option value="Critically Endangered">Critically Endangered</option>
+                            <option value="Endangered">Endangered</option>
+                            <option value="Least Concern">Least Concern</option>
+                        </select>
+                    </div>
+                    <button type="submit">Add Species</button>
+                </form>
+                <c:if test="${param.status == 'success'}">
+                    <p class="success-message">Species added successfully!</p>
+                </c:if>
+                <c:if test="${param.status == 'error'}">
+                    <p class="error-message">Error adding species. Please try again.</p>
+                </c:if>
             </div>
         </div>
-        
+
         <footer>
-        <p>&copy; 2024 Wildlife Watch. All rights reserved.</p>
-        </footer>   
+            <p>&copy; 2024 Wildlife Watch. All rights reserved.</p>
+        </footer>
     </body>
 </html>

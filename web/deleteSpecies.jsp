@@ -1,17 +1,11 @@
 <%-- 
     Document   : deleteSpecies
     Created on : 16-Jun-2024, 18:09:33
-    Author     : User
+    Author     : Sarah Syazana
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%
+    String speciesID = request.getParameter("speciesID");
+    response.sendRedirect("deleteSpecies?speciesID=" + speciesID);
+%>

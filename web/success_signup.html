@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Successful - BORNEO BLISS TRAVEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2359B2;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .main {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main h2 {
+            text-align: center;
+        }
+        .user-details {
+            margin-top: 20px;
+        }
+        .user-details label {
+            font-weight: bold;
+        }
+        .user-details p {
+            margin: 5px 0 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            width: 96.5%;
+            height: 45px;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+    </header>
+    <div class="main">
+        <h2>Sign Up Successful!</h2>
+        <div class="user-details">
+            <label>User ID:</label>
+            <p id="user_id"></p>
+            <label>Name:</label>
+            <p id="name"></p>
+            <label>Email:</label>
+            <p id="email"></p>
+            <label>Username:</label>
+            <p id="username"></p>
+            <label>Nationality:</label>
+            <p id="nationality"></p>
+            <div id="passport_details" style="display: none;">
+                <label>Passport Number:</label>
+                <p id="passport"></p>
+                <label>Country of Origin:</label>
+                <p id="country_origin"></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Assuming this data comes from the backend after successful signup
+        const userData = {
+            user_id: "123456",
+            name: "John Doe",
+            email: "john.doe@example.com",
+            username: "johndoe",
+            nationality: "Non-Malaysian",
+            passport: "A1234567",
+            country_origin: "United States"
+        };
+
+        document.getElementById("user_id").textContent = userData.user_id;
+        document.getElementById("name").textContent = userData.name;
+        document.getElementById("email").textContent = userData.email;
+        document.getElementById("username").textContent = userData.username;
+        document.getElementById("nationality").textContent = userData.nationality;
+        
+        if (userData.nationality === "Non-Malaysian") {
+            document.getElementById("passport_details").style.display = "block";
+            document.getElementById("passport").textContent = userData.passport;
+            document.getElementById("country_origin").textContent = userData.country_origin;
+        }
+    </script>
+</body>
+</html>

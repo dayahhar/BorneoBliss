@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Booking - BORNEO BLISS TRAVEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2359B2;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav img {
+            max-height: 50px;
+            margin-right: 20px;
+        }
+        nav h1, nav p {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+        }
+        nav a:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        .main {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .main h2 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #2359B2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #003366;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+        }
+        .status h3 {
+            margin-top: 0;
+        }
+        .payment-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .payment-button:hover {
+            background-color: #218838;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0; /* Adjust padding */
+            width: 96.5%;
+            height: 45px;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            font-size: 0.9em;
+        }
+        .booking-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+        .booking-nav .booking {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+            cursor: pointer;
+        }
+        .booking-nav .booking:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333; /* Change background color */
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-content a {
+            color: white;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            display: block;
+            padding: 10px; /* Add padding */
+            text-align: center;
+            background-color: #333;
+        }
+        .dropdown-content a:hover {
+            background-color: #555; /* Change hover background color */
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+    </header>
+    <nav>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Borneo Bliss Logo">
+        </a>
+        <a href="package.html">Packages</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div class="booking-nav">
+                <div class="dropdown">
+                    <span class="booking">Booking</span>
+                    <div class="dropdown-content">
+                        <a href="booking.html">Book Now</a>
+                        <a href="check_booking.html">Check Booking</a>
+                    </div>
+                </div>
+        </div>
+        <a href="login.html">Log In</a>
+    </nav>
+    <div class="main">
+        <h2>Check Your Booking</h2>
+        <form action="check_booking_process.jsp" method="POST">
+            <label for="booking-id">Booking ID:</label>
+            <input type="text" id="booking-id" name="booking-id" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <input type="submit" value="Check Booking">
+        </form>
+
+        <div class="status">
+            <h3>Booking Status: <span id="booking-status">Pending</span></h3>
+            <p id="booking-details">Your booking is currently being processed. Please check back later.</p>
+            <a href="payment.html" class="payment-button" style="display: none;" id="pay-now-button">Pay Now</a>
+        </div>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+    </footer>
+    <script>
+        // Example script to handle booking status and show payment button
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingStatus = document.getElementById('booking-status');
+            const bookingDetails = document.getElementById('booking-details');
+            const payNowButton = document.getElementById('pay-now-button');
+
+            // This would be replaced with actual logic to check booking status
+            const status = 'Approved'; // Example status
+
+            if (status === 'Approved') {
+                bookingStatus.textContent = 'Approved';
+                bookingDetails.textContent = 'Your booking has been approved. Please proceed with the payment.';
+                payNowButton.style.display = 'inline-block';
+            } else {
+                bookingStatus.textContent = 'Pending';
+                bookingDetails.textContent = 'Your booking is currently being processed. Please check back later.';
+            }
+        });
+    </script>
+</body>
+</html>

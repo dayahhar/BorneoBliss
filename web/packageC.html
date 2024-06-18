@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package C - BORNEO BLISS TRAVEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2359B2;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav img {
+            max-height: 50px;
+            margin-right: 20px;
+        }
+        nav h1, nav p {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+        }
+        nav a:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        ul {
+            text-align: left;
+            margin-left: 20px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            text-align: left;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 400px;
+            margin: 20px auto; /* Adjust margin to create space between nav and slideshow */
+        }
+        .slides {
+            display: none;
+            width: 400px;
+            height: 250px;
+        }
+        .slides img {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+        }
+        .dot-container {
+            text-align: center;
+            padding: 10px;
+            background: #ddd;
+        }
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+        .description {
+            flex: 1;
+            padding-left: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            width: 96.5%;
+            height: 45px;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            font-size: 0.9em;
+        }
+        .goback-btn {
+            background-color: #B27723;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .book-now-btn {
+            background-color: #2359B2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .book-now-btn:hover {
+            background-color: #333;
+        }
+        .booking {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+        }
+        .booking-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+        .booking-nav .booking {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+            cursor: pointer;
+        }
+        .booking-nav .booking:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333; /* Change background color */
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-content a {
+            color: white;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            display: block;
+            padding: 10px; /* Add padding */
+            text-align: center;
+            background-color: #333;
+        }
+        .dropdown-content a:hover {
+            background-color: #555; /* Change hover background color */
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+    </header>
+    <nav>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Borneo Bliss Logo">
+        </a>
+        <a href="package.html">Packages</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div class="booking-nav">
+                <div class="dropdown">
+                    <span class="booking">Booking</span>
+                    <div class="dropdown-content">
+                        <a href="booking.html">Book Now</a>
+                        <a href="check_booking.html">Check Booking</a>
+                    </div>
+                </div>
+        </div>
+        <a href="login.html">Log In</a>
+    </nav>
+    <div class="slideshow-container">
+        <div class="slides fade">
+            <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Slide 1">
+        </div>
+        <div class="slides fade">
+            <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/263c1514e.jpg" alt="Slide 2">
+        </div>
+        <div class="slides fade">
+            <img src="https://www.sabahtrans.com/wp-content/uploads/2022/12/mabul-island-attractions.jpg" alt="Slide 3">
+        </div>
+        <div class="slides fade">
+            <img src="https://sabahtravel-assets.s3.amazonaws.com/images/20200214-ao0xm-sipadan-kapalai-lodges-jpg" alt="Slide 4">
+        </div>
+        <div class="slides fade">
+            <img src="https://mediaim.expedia.com/localexpert/2269074/45a97dde-4587-4047-8dbf-a97863b0da40.jpg?impolicy=resizecrop&rw=1005&rh=565" alt="Slide 5">
+        </div>
+        <div class="slides fade">
+            <img src="https://www.mataking.com/lumonata-plugins/additional/featured/4-1601606330.jpg" alt="Slide 6">
+        </div>
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+        </div>
+    </div>
+    <div class="main">
+        <div class="description">
+            <h2>Package C Details - DIVE TOUR AROUND SEMPORNA</h2>
+            <p>Includes guided tour, accommodation, meals</p>
+            <h3>Tour Highlights</h3>
+            <ul>
+                <li>Experience diving in Sipadan where green turtles, bump parrotfish, and barracudas storm await</li>
+                <li>Dive into the wonders of Mabul and Kapalai Islands, featuring diving sessions amidst rare marine creatures and vibrant coral gardens</li>
+                <li>Explore crystal-clear waters at Timba-Timba Island, encountering nurse sharks and barracudas  </li>
+                <li>Visit Mataking Island for stunning marine life and macro wonders</li>
+            </ul>
+            <h4>Overview of the Diving Tour</h4>
+            <p>Set out on a remarkable 5-day journey to Semporna and immerse yourself in the captivating wonders of Sabah's underwater treasures! Savor an enthralling island-hopping adventure in the Mabul and Kapalai Islands, which are conveniently located near Semporna and are well-known for their thriving marine life.</p>
+            <p>The next day is filled with thrilling diving experiences at the picturesque Timba-Timba and Mataking Island, adding even more excitement to your Semporna underwater experience. On the fourth day, guests on the Sipadan Diver Package set off on an incredible voyage to the renowned Sipadan Island, renowned for its rich marine biodiversity, while those on the Non-Sipadan Diver Package enjoy an exclusive second exploration of Mabul and Kapalai Islands!</p>
+
+            <h5>LOCAL MARKET</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Price per Person</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Adult</td>
+                        <td>RM2220</td>
+                    </tr>
+                    <tr>
+                        <td>Child</td>
+                        <td>RM2000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>INTERNATIONAL MARKET</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Price per Person</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Adult</td>
+                        <td>RM2500</td>
+                    </tr>
+                    <tr>
+                        <td>Child</td>
+                        <td>RM2300</td>
+                    </tr>
+                </tbody>
+            </table>
+            Child Policy
+            <ul>
+                <li>Child 12 years old and above subjected to Adult Rate.</li>
+                <li>Infant below 3 years old is FOC.</li>
+            </ul>
+            <a href="booking.html"><button class="book-now-btn">Book Now!</button></a>
+            <a href="package.html"><button class="goback-btn">Go Back to Packages</button></a>
+        </div>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+    </footer>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 1800);
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            if (slideIndex > document.getElementsByClassName("slides").length) {
+                slideIndex = 1;
+            } else if (slideIndex < 1) {
+                slideIndex = document.getElementsByClassName("slides").length;
+            }
+            showSlides();
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides();
+        }
+    </script>
+</body>
+</html>

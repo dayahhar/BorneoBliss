@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - BORNEO BLISS TRAVEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2359B2;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav img {
+            max-height: 50px;
+            margin-right: 20px;
+        }
+        nav h1, nav p {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+        }
+        nav a:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .packages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .package {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .package img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+        .package:hover {
+            transform: translateY(-10px);
+        }
+        .package h3 {
+            margin: 10px 0;
+        }
+        .package p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .package a {
+            text-decoration: none;
+            color: black;
+        }
+        .package-details {
+            padding: 15px;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0; /* Adjust padding */
+            width: 96.5%;
+            height: 45px;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            font-size: 0.9em;
+        }
+        .booking {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+        }
+        .booking-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+        .booking-nav .booking {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background: #333;
+            cursor: pointer;
+        }
+        .booking-nav .booking:hover {
+            background-color: #555; /* Change the background color on hover */
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333; /* Change background color */
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-content a {
+            color: white;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            display: block;
+            padding: 10px; /* Add padding */
+            text-align: center;
+            background-color: #333;
+        }
+        .dropdown-content a:hover {
+            background-color: #555; /* Change hover background color */
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+    </header>
+    <nav>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Borneo Bliss Logo">
+        </a>
+        <a href="package.html">Packages</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div class="booking-nav">
+                <div class="dropdown">
+                    <span class="booking">Booking</span>
+                    <div class="dropdown-content">
+                        <a href="booking.html">Book Now</a>
+                        <a href="check_booking.html">Check Booking</a>
+                    </div>
+                </div>
+        </div>
+        <a href="login.html">Log In</a>
+    </nav>
+    <div class="packages">
+        <div class="package">
+            <a href="packageA.html">
+                <img src="https://i.pinimg.com/736x/53/7c/93/537c93b841a2411d918766dc6773dc8d.jpg" alt="Package A">
+                <div class="package-details">
+                    <h3>5D4N KOTA KINABALU & KUNDASANG TOUR</h3>
+                    <p>5-day tour offers perfect mix of relaxation, adventure, educational experiences for unforgettable family memories.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageB.html">
+                <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/kinabalu1.jpg" alt="Package B">
+                <div class="package-details">
+                    <h3>2D1N MOUNT KINABALU CLIMB</h3>
+                    <p>FREE 1-night stay in KK for the 2D1N Mount Kinabalu Climb with Rata Lebom Resthouse. Limited slot!</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageC.html">
+                <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Package C">
+                <div class="package-details">
+                    <h3>DIVE TOUR AROUND SEMPORNA</h3>
+                    <p>Stay at luxurious Sipadan-Kapalai Dive Resort and discover the incredible diving scene in Semporna.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageD.html">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Morning_fog_over_Danum_Valley_%2827329938517%29.jpg" alt="Package D">
+                <div class="package-details">
+                    <h3>4D3N BORNEO RAINFOREST LODGE ADVENTURE</h3>
+                    <p>Danum Valley Conservation Area in eastern Sabah spans 43,800 hectares of pristine tropical rainforest.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageE.html">
+                <img src="https://www.semadangkayak.com/wp-content/uploads/2020/05/semadang_kayaking-32-605x605.jpg" alt="Package E">
+                <div class="package-details">
+                    <h3>SEMADANG RIVER KAYAKING</h3>
+                    <p>Experience thrill of kayaking on Semadang River and discover flora and fauna of Borneo.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageF.html">
+                <img src="https://myrehat.com/wp-content/uploads/2023/08/18.jpeg" alt="Package F">
+                <div class="package-details">
+                    <h3>SUSUNG WATERFALL DAY TRIP</h3>
+                    <p>Discover inner explorer on day trip to Bengoh Dam, hidden gem in Sarawak's jungles.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageG.html">
+                <img src="https://sarawakforestry.com/layout2/wp-content/uploads/2017/05/wind-cave-photo1.png" alt="Package G">
+                <div class="package-details">
+                    <h3>KUCHING DAY TOUR - FAIRY AND WIND CAVES</h3>
+                    <p>Explore enchanting Fairy and Wind Caves in Bau, Kuching. Witness stunning limestone formations, stalactites, stalagmites.</p>
+                </div>
+            </a>
+        </div>
+        <div class="package">
+            <a href="packageH.html">
+                <img src="https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2011/12/sarawak-kee-lubok-kasai-02.jpg?fit=2000%2C1500&quality=60&strip=all&ssl=1" alt="Package H">
+                <div class="package-details">
+                    <h3>4D3N LUBOK KASAI JUNGLE EXPERIENCE</h3>
+                    <p>Visit Nanga Sumpa longhouse to learn about Iban culture. Swim in Enseluai Waterfall, enjoy riverside BBQ.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+    </footer>
+</body>
+</html>

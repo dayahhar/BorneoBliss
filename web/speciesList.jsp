@@ -34,7 +34,7 @@ password="app"/>
     </head>
     <body>
         <nav>
-            <a href="index.jsp">
+            <a href="dashboard.jsp">
                 <div class="logo-placeholder">
                     <img src="images/logo.png" alt="Wildlife Watch Logo">
                 </div>

@@ -23,7 +23,7 @@ url="jdbc:derby://localhost:1527/WildlifeDB" user="app" password="app"/>
     </head>
     <body>
         <nav>
-            <a href="index.html">
+            <a href="dashboard.jsp">
                 <div class="logo-placeholder">
                 <img src="images/logo.png" alt="Wildlife Watch Logo">
                 </div>

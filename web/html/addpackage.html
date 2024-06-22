@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Package: Borneo Bliss</title>
+    <link rel="stylesheet" href="styleAdmin.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Page</h1>
+        <p>Borneo Bliss Management System</p>
+    </header>
+    <nav>
+        <a href="admin.html" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
+        <a href="packageManage.html">Packages</a>
+        <a href="bookingApprove.html">Booking</a>
+        <a href="userProfile.html">Profile</a>
+        <a href="report.html">Report</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <main>
+        <h2 style="text-align: center;">Add New Package</h2>
+        <div class="form-card">
+            <form action="/add_package" method="POST">
+                <div class="form-group">
+                    <input type="text" id="packageID" name="packageID" placeholder="Package ID" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="packageName" name="packageName" placeholder="Package Name" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="packageDesc" name="packageDesc" rows="4" placeholder="Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="price" name="price" placeholder="Price" required>
+                </div>
+                <div class="form-group">
+                    <select id="package-state" name="package-state" required>
+                        <option value="" disabled selected>Select State</option>
+                        <option value="sabah">Sabah</option>
+                        <option value="sarawak">Sarawak</option>
+                    </select>
+                </div>
+                <button type="submit" class="button full-width">Add Package</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Borneo Bliss Management System</p>
+    </footer>
+</body>
+</html>

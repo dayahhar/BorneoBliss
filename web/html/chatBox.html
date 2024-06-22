@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borneo Bliss Management System - Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #chat-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        #chat-window {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            max-width: 70%;
+        }
+
+        .user-message {
+            background-color: #f0f0f0;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #e1f5fe;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        #user-input {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            outline: none;
+        }
+
+        #send-button {
+            width: 70px;
+            padding: 10px;
+            background-color: #2196F3;
+            color: #fff;
+            border: none;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-window">
+            <div id="chat-messages"></div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        // JavaScript code for handling chat functionality
+        function addMessage(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = `${sender}: ${message}`;
+            chatMessages.appendChild(messageElement);
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+            if (message !== '') {
+                addMessage(message, 'You');
+                // Send the message to the backend for processing
+                // You'll need to implement this part
+                // Example: sendToBackend(message);
+                userInput.value = '';
+            }
+        }
+
+        // Function to handle responses from the backend
+        function receiveMessage(message) {
+            addMessage(message, 'Bot');
+        }
+
+        // Example function for sending message to backend
+        function sendToBackend(message) {
+            // Implement your logic for sending message to backend here
+            // You can use AJAX, fetch API, or WebSocket for this purpose
+            // Example using fetch API:
+            fetch('http://localhost:8080/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                receiveMessage(data.message);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

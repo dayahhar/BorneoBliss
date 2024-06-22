@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Packages: Borneo Bliss</title>
+    <link rel="stylesheet" href="styleAdmin.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Page</h1>
+        <p>Borneo Bliss Management System</p>
+    </header>
+    <nav>
+        <a href="admin.html" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
+        <a href="packageManage.html">Packages</a>
+        <a href="bookingApprove.html">Booking</a>
+        <a href="userProfile.html">Profile</a>
+        <a href="report.html">Report</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <main>
+        <h2 style="margin-left:125px">Manage Packages</h2>
+        <button class="add-package-btn" onclick="window.location.href='addpackage.html'">Add Package</button>
+        <div class="catalog">
+            <div class="package">
+                <img src="https://i.pinimg.com/736x/53/7c/93/537c93b841a2411d918766dc6773dc8d.jpg" alt="Package A">
+                <div class="package-details">
+                    <h3>5D4N KOTA KINABALU & KUNDASANG TOUR</h3>
+                    <p>5-day tour offers perfect mix of relaxation, adventure, educational experiences for unforgettable family memories.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/kinabalu1.jpg" alt="Package B">
+                <div class="package-details">
+                    <h3>2D1N MOUNT KINABALU CLIMB</h3>
+                    <p>FREE 1-night stay in KK for the 2D1N Mount Kinabalu Climb with Rata Lebom Resthouse. Limited slot!</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Package C">
+                <div class="package-details">
+                    <h3>DIVE TOUR AROUND SEMPORNA</h3>
+                    <p>Stay at luxurious Sipadan-Kapalai Dive Resort and discover the incredible diving scene in Semporna.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Morning_fog_over_Danum_Valley_%2827329938517%29.jpg" alt="Package D">
+                <div class="package-details">
+                    <h3>4D3N BORNEO RAINFOREST LODGE ADVENTURE</h3>
+                    <p>Danum Valley Conservation Area in eastern Sabah spans 43,800 hectares of pristine tropical rainforest.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://www.semadangkayak.com/wp-content/uploads/2020/05/semadang_kayaking-32-605x605.jpg" alt="Package E">
+                <div class="package-details">
+                    <h3>SEMADANG RIVER KAYAKING</h3>
+                    <p>Experience thrill of kayaking on Semadang River and discover flora and fauna of Borneo.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://myrehat.com/wp-content/uploads/2023/08/18.jpeg" alt="Package F">
+                <div class="package-details">
+                    <h3>SUSUNG WATERFALL DAY TRIP</h3>
+                    <p>Discover inner explorer on day trip to Bengoh Dam, hidden gem in Sarawak's jungles.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://sarawakforestry.com/layout2/wp-content/uploads/2017/05/wind-cave-photo1.png" alt="Package G">
+                <div class="package-details">
+                    <h3>KUCHING DAY TOUR - FAIRY AND WIND CAVES</h3>
+                    <p>Explore enchanting Fairy and Wind Caves in Bau, Kuching. Witness stunning limestone formations, stalactites, stalagmites.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+            <div class="package">
+                <img src="https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2011/12/sarawak-kee-lubok-kasai-02.jpg?fit=2000%2C1500&quality=60&strip=all&ssl=1" alt="Package H">
+                <div class="package-details">
+                    <h3>4D3N LUBOK KASAI JUNGLE EXPERIENCE</h3>
+                    <p>Visit Nanga Sumpa longhouse to learn about Iban culture. Swim in Enseluai Waterfall, enjoy riverside BBQ.</p>
+                    <button onclick="window.location.href='updatepackage.html?id=1'">Update</button>
+                    <button onclick="confirmDelete(1)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Borneo Bliss Management System</p>
+    </footer>
+    <script>
+        function confirmDelete(packageId) {
+            if (confirm("Are you sure you want to delete this package?")) {
+                // Proceed with deletion
+                window.location.href = "/delete_package?id=" + packageID;
+            } else {
+                // Cancel deletion
+            }
+        }
+    </script>
+</body>
+</html>

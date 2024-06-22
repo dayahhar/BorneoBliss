@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings: Borneo Bliss</title>
+    <link rel="stylesheet" href="styleAdmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Page</h1>
+        <p>Borneo Bliss Management System</p>
+    </header>
+    <nav>
+        <a href="admin.html"><img src="imagesAdmin/logo.png" alt="Home" style="max-width: 50px; max-height: 50px;"></a>
+        <a href="packageManage.html">Packages</a>
+        <a href="bookingApprove.html">Booking</a>
+        <a href="userProfile.html">Profile</a>
+        <a href="report.html">Report</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <main>
+        <h2>Approve Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Traveler Name</th>
+                    <th>Package</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>B035</td>
+                    <td>Kim Min-jun</td>
+                    <td>SEMADANG RIVER KAYAKING</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B036</td>
+                    <td>Lim Wei Hong</td>
+                    <td>2D1N MOUNT KINABALU CLIMB</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B037</td>
+                    <td>Emma Davis</td>
+                    <td>KUCHING DAY TOUR - FAIRY AND WIND CAVES</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B038</td>
+                    <td>Siti Khadijah binti Abdullah</td>
+                    <td>4D3N BORNEO RAINFOREST LODGE ADVENTURE</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B039</td>
+                    <td>Yuki Nakamura</td>
+                    <td>5D4N KOTA KINABALU & KUNDASANG TOUR</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B040</td>
+                    <td>Muhammad Hafiz bin Ismail</td>
+                    <td>SUSUNG WATERFALL DAY TRIP</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+                <tr>
+                    <td>B041</td>
+                    <td>Wong Wei Jie</td>
+                    <td>DIVE TOUR AROUND SEMPORNA</td>
+                    <td>Pending</td>
+                    <td><button class="approve-btn" onclick="confirmApproveBooking(1)">Approve</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prevPageBtn" onclick="prevPage()"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextPageBtn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Travel Agency Management System</p>
+    </footer>
+
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 5;
+        const tableRows = document.querySelectorAll('tbody tr');
+        const totalPages = Math.ceil(tableRows.length / rowsPerPage);
+
+        function showRows(page) {
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            tableRows.forEach((row, index) => {
+                if (index >= start && index < end) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showRows(currentPage);
+                updatePaginationButtons();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showRows(currentPage);
+                updatePaginationButtons();
+            }
+        }
+
+        function updatePaginationButtons() {
+            document.getElementById('prevPageBtn').disabled = currentPage === 1;
+            document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+        }
+
+        window.onload = function () {
+            showRows(currentPage);
+            updatePaginationButtons();
+        };
+        
+        // Function to confirm approving booking
+        function confirmApproveBooking(bookingId) {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            var confirmBtn = document.getElementById("confirmApprove");
+            var cancelBtn = document.getElementById("cancelApprove");
+
+            confirmBtn.onclick = function () {
+                // Perform action to approve the booking
+                console.log("Booking with ID " + bookingId + " approved");
+                modal.style.display = "none";
+            };
+
+            cancelBtn.onclick = function () {
+                modal.style.display = "none";
+            };
+        }
+    </script>
+</body>
+</html>

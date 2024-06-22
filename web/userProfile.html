@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Customers</title>
+    <link rel="stylesheet" href="styleAdmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Page</h1>
+        <p>Borneo Bliss Management System</p>
+    </header>
+    <nav>
+        <a href="admin.html"><img src="imagesAdmin/logo.png" alt="Home" style="max-width: 50px; max-height: 50px;"></a>
+        <a href="packageManage.html">Packages</a>
+        <a href="bookingApprove.html">Booking</a>
+        <a href="userProfile.html">Profile</a>
+        <a href="report.html">Report</a>
+        <a href="logout.html">Logout</a>
+    </nav>
+    <main>
+        <h2>Manage Profiles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Nationality</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>nguyenminh84</td>
+                    <td>Nguyen Minh</td>
+                    <td>nguyenminh84@gmail.com</td>
+                    <td>+84-912-345-678</td>
+                    <td>Non-Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>chengwei_lee</td>
+                    <td>Lee Cheng Wei</td>
+                    <td>chengwei.lee@yahoo.com</td>
+                    <td>+6016-789 1234</td>
+                    <td>Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>b_taylor</td>
+                    <td>Benjamin Taylor</td>
+                    <td>hb.taylor@gmail.com</td>
+                    <td>+1-123-456-7890</td>
+                    <td>Non-Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>junhao98</td>
+                    <td>Ong Jun Hao</td>
+                    <td>junhao98@gmail.com</td>
+                    <td>+6017-234 5678</td>
+                    <td>Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>jihyepark</td>
+                    <td>Park Ji-hye</td>
+                    <td>jihye.park@gmail.com</td>
+                    <td>+82-10-9876-5432</td>
+                    <td>Non-Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>sofearahman</td>
+                    <td>Aina Sofea binti Abdul Rahman</td>
+                    <td>sofearahman@yahoo.com</td>
+                    <td>+6013-456 7890n</td>
+                    <td>Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>hakimzain93</td>
+                    <td>Amirul Hakim bin Mohd Zain</td>
+                    <td>hakimzain@gmail.com</td>
+                    <td>+6012-345 9789</td>
+                    <td>Malaysian</td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prevPageBtn" onclick="prevPage()"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextPageBtn" onclick="nextPage()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Borneo Bliss Management System</p>
+    </footer>
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 5;
+        const tableRows = document.querySelectorAll('tbody tr');
+        const totalPages = Math.ceil(tableRows.length / rowsPerPage);
+
+        function showRows(page) {
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            tableRows.forEach((row, index) => {
+                if (index >= start && index < end) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showRows(currentPage);
+                updatePaginationButtons();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showRows(currentPage);
+                updatePaginationButtons();
+            }
+        }
+
+        function updatePaginationButtons() {
+            document.getElementById('prevPageBtn').disabled = currentPage === 1;
+            document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+        }
+
+        window.onload = function () {
+            showRows(currentPage);
+            updatePaginationButtons();
+        };
+        
+        // Function to confirm approving booking
+        function confirmApproveBooking(bookingId) {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            var confirmBtn = document.getElementById("confirmApprove");
+            var cancelBtn = document.getElementById("cancelApprove");
+
+            confirmBtn.onclick = function () {
+                // Perform action to approve the booking
+                console.log("Booking with ID " + bookingId + " approved");
+                modal.style.display = "none";
+            };
+
+            cancelBtn.onclick = function () {
+                modal.style.display = "none";
+            };
+        }
+    </script>
+</body>
+</html>

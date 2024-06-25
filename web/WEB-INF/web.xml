@@ -8,6 +8,10 @@
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>payment.PaymentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <servlet-class>traveler.ManageUsersServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/BookingServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <url-pattern>/ManageUsersServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

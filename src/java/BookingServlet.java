@@ -1,4 +1,4 @@
-package booking;
+import booking.BOOKING;
 
 import java.io.*;
 import javax.servlet.*;

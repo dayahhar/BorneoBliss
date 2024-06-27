@@ -2,15 +2,27 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>BookingServlet</servlet-name>
-        <servlet-class>booking.BookingServlet</servlet-class>
+        <servlet-class>BookingServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>payment.PaymentServlet</servlet-class>
+        <servlet-class>PaymentServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageUsersServlet</servlet-name>
-        <servlet-class>traveler.ManageUsersServlet</servlet-class>
+        <servlet-class>ManageUsersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBookingServlet</servlet-name>
+        <servlet-class>ViewBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApprovalBookingServlet</servlet-name>
+        <servlet-class>ApprovalBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApprovalBookingActionServlet</servlet-name>
+        <servlet-class>ApprovalBookingActionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBookingServlet</servlet-name>
+        <url-pattern>/ViewBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovalBookingServlet</servlet-name>
+        <url-pattern>/ApprovalBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovalBookingActionServlet</servlet-name>
+        <url-pattern>/ApprovalBookingActionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

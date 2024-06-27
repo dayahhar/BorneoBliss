@@ -15,7 +15,7 @@
         <title>Manage Users - Borneo Bliss</title>
     </head>
     <body>
-        <h1>User Management.</h1>
+        <h1>User Management</h1>
     <table border="1">
         <tr>
             <th>ID</th>

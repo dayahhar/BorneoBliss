@@ -9,7 +9,7 @@ package traveler;
  *
  * @author Aqilah05
  */
-public class TRAVELER implements java.io.Serializable {
+public class TRAVELER {
     private String userID;
     private String username;
     private String name;

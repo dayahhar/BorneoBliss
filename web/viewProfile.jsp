@@ -14,6 +14,29 @@
     <link rel="stylesheet" href="styleUser.css">
 </head>
     <body>
+        <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+    </header>
+    <nav>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Borneo Bliss Logo">
+        </a>
+        <a href="package.html">Packages</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div class="booking-nav">
+                <div class="dropdown">
+                    <span class="booking">Booking</span>
+                    <div class="dropdown-content">
+                        <a href="create_booking.jsp">Book Now</a>
+                        <a href="check_booking.jsp">Check Booking</a>
+                    </div>
+                </div>
+        </div>
+        <a href="ViewProfile.jsp">Profile</a>
+        <a href="login.jsp">Log In</a>
+    </nav>
         <div class="profile-container">
         <h1>Profile Details</h1>
         <div class="profile-details">

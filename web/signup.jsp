@@ -204,6 +204,7 @@
                 </div>
             </div>
         </div>
+        <a href="ViewProfile.jsp">Profile</a>
         <a href="login.jsp">Log In</a>
     </nav>
     <div class="main">

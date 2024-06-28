@@ -33,7 +33,8 @@
                     </div>
                 </div>
         </div>
-        <a href="logout.jsp">Log Out</a>
+        <a href="ViewProfile.jsp">Profile</a>
+        <a href="login.jsp">Log In</a>
     </nav>
     <div class="main">
         <h2>Book Your Adventure</h2>

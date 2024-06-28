@@ -15,8 +15,18 @@ public class PAYMENT {
     private String cardNumber;
     private String expiryDate;
     private int cvv;
+    private String userID;
 
     public PAYMENT() {
+    }
+
+    public PAYMENT(String paymentID, double amount, String cardNumber, String expiryDate, int cvv, String userID) {
+        this.paymentID = paymentID;
+        this.amount = amount;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+        this.userID = userID;
     }
 
     public String getPaymentID() {
@@ -58,6 +68,14 @@ public class PAYMENT {
     public void setCvv(int cvv) {
         this.cvv = cvv;
     }
-    
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     
 }

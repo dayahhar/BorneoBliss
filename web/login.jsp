@@ -193,6 +193,7 @@
                 </div>
             </div>
         </div>
+        <a href="ViewProfile.jsp">Profile</a>
         <a href="login.jsp">Log In</a> <!-- This link might be changed to a logout or profile link after login -->
     </nav>
     <div class="main">

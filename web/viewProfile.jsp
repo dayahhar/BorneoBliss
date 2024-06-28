@@ -15,7 +15,7 @@
 </head>
     <body>
         <div class="profile-container">
-        <h1>Profile Page</h1>
+        <h1>Profile Details</h1>
         <div class="profile-details">
             <p><strong>Username:</strong> ${user.username}</p>
             <p><strong>Name:</strong> ${user.name}</p>
@@ -23,7 +23,7 @@
             <p><strong>Phone Number:</strong> ${user.phone}</p>
         </div>
         <div class="profile-buttons">
-            <form action="viewProfile.jsp" method="post">
+            <form action="updateProfile.jsp" method="post">
                 <button type="submit">Update Profile</button>
             </form>
             <form action="index.html" method="get">
@@ -31,7 +31,6 @@
             </form>
         </div>
     </div>
-        <h1>View Profile Page</h1>
         <footer>
         <div class="contact-info">
             <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>

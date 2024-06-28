@@ -10,12 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPDATE PROFILE - BORNEO BLISS TRAVEL</title>
+    <title>Update Profile - BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
     <body>
         
-        <h1>Update Profile Page</h1>
+     
         <div class="profile-container">
         <h1>Update Profile</h1>
         <form action="updateProfile.jsp" method="post">

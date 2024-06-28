@@ -8,7 +8,7 @@
     </property>
   </jsp-config>
   <resource-ref>
-<res-ref-name>jdbc/myDatasource</res-ref-name>
-<jndi-name>jdbc/myDatasource</jndi-name>
-</resource-ref>
+    <res-ref-name>jdbc/myDatasource</res-ref-name>
+    <jndi-name>jdbc/myDatasource</jndi-name>
+  </resource-ref>
 </glassfish-web-app>

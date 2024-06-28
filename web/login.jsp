@@ -176,6 +176,7 @@
     <header>
         <h1>Welcome to Borneo Bliss Travel</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+        <link rel="stylesheet" href="styleUser.css">
     </header>
     <nav>
         <a href="index.jsp">

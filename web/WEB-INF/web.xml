@@ -24,6 +24,10 @@
         <servlet-name>ApprovalBookingActionServlet</servlet-name>
         <servlet-class>ApprovalBookingActionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckBookingServlet</servlet-name>
+        <servlet-class>CheckBookingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/BookingServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ApprovalBookingActionServlet</servlet-name>
         <url-pattern>/ApprovalBookingActionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckBookingServlet</servlet-name>
+        <url-pattern>/CheckBookingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

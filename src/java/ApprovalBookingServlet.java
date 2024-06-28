@@ -43,7 +43,7 @@ public class ApprovalBookingServlet extends HttpServlet {
 
             String query = "SELECT A.BOOKINGID, A.BOOKINGDATE, A.TRAVELDATE, A.USERID, A.BOOKINGPAX, A.BOOKINGSTATUS, " +
                            "P.PACKAGEID, P.PACKAGENAME, P.PACKAGEPRICE, P.PACKAGESTATE, " +
-                           "PAY.PAYMENTID, PAY.AMOUNT, PAY.CARDNUMBER, PAY.EXPIRYDATE, PAY.CVV " +
+                           "PAY.PAYMENTID, PAY.AMOUNT, PAY.PAYMENTSTATUS " +
                            "FROM APPENDING A " +
                            "INNER JOIN PACKAGE P ON A.PACKAGEID = P.PACKAGEID " +
                            "INNER JOIN PAYMENT PAY ON A.BOOKINGID = PAY.BOOKINGID " +
@@ -70,9 +70,8 @@ public class ApprovalBookingServlet extends HttpServlet {
                 
                 String paymentID = rs.getString("PAYMENTID");
                 double amount = rs.getDouble("AMOUNT");
-                String cardNumber = rs.getString("CARDNUMBER");
-                String expiryDate = rs.getString("EXPIRYDATE");
-                int cvv = rs.getInt("CVV");
+                String paymentStatus = rs.getString("PAYMENTSTATUS");
+                
                 
 
                 // Append each row's data to StringBuilder
@@ -91,9 +90,7 @@ public class ApprovalBookingServlet extends HttpServlet {
                         
                            .append("<td>").append(paymentID).append("</td>")
                            .append("<td>").append(amount).append("</td>")
-                           .append("<td>").append(cardNumber).append("</td>")
-                           .append("<td>").append(expiryDate).append("</td>")
-                           .append("<td>").append(cvv).append("</td>")
+                           .append("<td>").append(paymentStatus).append("</td>")
                            .append("<td><form action=\"ApprovalBookingActionServlet\" method=\"post\">")
                            .append("<input type=\"hidden\" name=\"bookingID\" value=\"").append(bookingID).append("\">")
                            .append("<input type=\"submit\" value=\"Approve\">")

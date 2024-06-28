@@ -1,5 +1,5 @@
 <%-- 
-    Document   : approve_bookings
+    Document   : checkAdmin_bookings
     Created on : Jun 28, 2024, 2:28:21 AM
     Author     : syahira
 --%>
@@ -7,13 +7,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Approve Bookings</title>
+    <title>Check Bookings</title>
     <link rel="stylesheet" href="styleAdmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script>
     // Function to submit the form
     function submitForm() {
-        document.getElementById("ApproveBooking").submit();
+        document.getElementById("CheckBooking").submit();
     }
 
     // Check if page is opened for the first time using session storage
@@ -48,32 +48,27 @@
     </nav>
     <main>
         <div class="container">
-        <h1>Approve Bookings</h1>
-        <form id="ApproveBooking" action="ApprovalBookingServlet" method="get"> <!-- Form for refreshing data -->
+            <h1>Check Bookings</h1>
+            <form id="CheckBooking" action="CheckBookingServlet" method="get"> <!-- Form for refreshing data -->
         </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Booking Date</th>
-                    <th>Travel Date</th>
-                    <th>User ID</th>
-                    <th>Booking Pax</th>
-                    <th>Booking Status</th>
-                    <th>Package ID</th>
-                    <th>Package Name</th>
-                    <th>Package Price</th>
-                    <th>Package State</th>
-                    <th>Payment ID</th>
-                    <th>Amount</th>
-                    <th>Payment Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${approvalData} <!-- Directly print the accumulated data -->
-            </tbody>
-        </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Amount</th>
+                        <th>Card Number</th>
+                        <th>Expiry Date</th>
+                        <th>CVV</th>
+                        <th>Booking ID</th>
+                        <th>User ID</th>
+                        <th>Payment Status</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    ${checkAdminbookingData}<!-- Data will be populated dynamically by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </main>
     <footer>
@@ -81,4 +76,3 @@
     </footer>
 </body>
 </html>
-

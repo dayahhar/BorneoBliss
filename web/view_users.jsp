@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="traveler.ManageUsersServlet" %>
+<%@ page import="ManageUsersServlet" %>
 <!DOCTYPE html>
 <html>
     <head>

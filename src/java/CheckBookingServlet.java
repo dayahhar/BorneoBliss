@@ -1,3 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author syahira sofea
+ */
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ViewBookingServlet")
-public class ViewBookingServlet extends HttpServlet {
+@WebServlet("/CheckBookingServlet")
+public class CheckBookingServlet extends HttpServlet {
 
     private static final String DB_URL = "jdbc:derby://localhost:1527/BorneoDB;create=true";
     private static final String DB_USER = "app";
@@ -28,58 +38,39 @@ public class ViewBookingServlet extends HttpServlet {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            String query = "SELECT * FROM APPENDING UNION SELECT * FROM CONFIRMED";
+            String query = "SELECT * FROM PAYMENT";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
 
             // Use StringBuilder to accumulate data if multiple rows are expected
-            StringBuilder bookingData = new StringBuilder();
+            StringBuilder checkAdminbookingData = new StringBuilder();
 
             while (rs.next()) {
+                String paymentID = rs.getString("PAYMENTID");
+                double amount = rs.getDouble("AMOUNT");
+                String cardNumber = rs.getString("CARDNUMBER");
+                String expiryDate = rs.getString("EXPIRYDATE");
+                int cvv = rs.getInt("CVV");
                 String bookingID = rs.getString("BOOKINGID");
-                String bookingDate = rs.getString("BOOKINGDATE");
-                String travelDate = rs.getString("TRAVELDATE");
                 String userID = rs.getString("USERID");
-                String packageID = rs.getString("PACKAGEID");
-                int bookingPax = rs.getInt("BOOKINGPAX");
-                String bookingStatus = rs.getString("BOOKINGSTATUS");
-                
-                
-
-
-                String buttonText = "";
-                String formAction = "";
-                
-                
-                if (bookingStatus.equals("PENDING")) {
-                    buttonText = "Approve Booking";
-                    formAction = "ApprovalBookingServlet";
-                } else if (bookingStatus.equals("APPROVED")) {
-                    buttonText = "Check Booking";
-                    formAction = "CheckBookingServlet";
-                }
-             
+                String paymentStatus = rs.getString("PAYMENTSTATUS");
 
                 // Append each row's data to StringBuilder
-                bookingData.append("<tr>")
+                checkAdminbookingData.append("<tr>")
+                           .append("<td>").append(paymentID).append("</td>")
+                           .append("<td>").append(amount).append("</td>")
+                           .append("<td>").append(cardNumber).append("</td>")
+                           .append("<td>").append(expiryDate).append("</td>")
+                           .append("<td>").append(cvv).append("</td>")
                            .append("<td>").append(bookingID).append("</td>")
-                           .append("<td>").append(bookingDate).append("</td>")
-                           .append("<td>").append(travelDate).append("</td>")
                            .append("<td>").append(userID).append("</td>")
-                           .append("<td>").append(packageID).append("</td>")
-                           .append("<td>").append(bookingPax).append("</td>")
-                           .append("<td>").append(bookingStatus).append("</td>")
-                           .append("<td>")
-                            .append("<form action=\"").append(formAction).append("\" method=\"get\">")
-                            .append("<input type=\"submit\" value=\"").append(buttonText).append("\" />")
-                            .append("</form>")
-                            .append("</td>")
+                           .append("<td>").append(paymentStatus).append("</td>")
                            .append("</tr>");
             }
-
-            // Set the accumulated data as an attribute
-            request.setAttribute("bookingData", bookingData.toString());
-
+            
+             
+            request.setAttribute("checkAdminbookingData", checkAdminbookingData.toString());
+            
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace(); // Handle your exceptions appropriately
         } finally {
@@ -89,6 +80,6 @@ public class ViewBookingServlet extends HttpServlet {
             try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
 
-        request.getRequestDispatcher("view_bookings.jsp").forward(request, response);
+        request.getRequestDispatcher("checkAdmin_bookings.jsp").forward(request, response);
     }
 }

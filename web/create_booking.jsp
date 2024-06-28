@@ -70,10 +70,7 @@
                 </select>
 
             <label for="bookingPax">Number of Pax:</label>
-            <input type="number" id="bookingPax" name="bookingPax" required><br>
-
-            <label for="bookingStatus">Booking Status:</label>
-            <input type="text" id="bookingStatus" name="bookingStatus" required><br>
+            <input type="number" id="bookingPax" name="bookingPax" required><br><br>
 
             <input type="submit" value="Create Booking">
         </form>

@@ -6,12 +6,21 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - BORNEO BLISS TRAVELL</title>
+    <link rel="stylesheet" href="styleUser.css">
+</head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Update Profile Page</h1>
+        <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+        </footer>
     </body>
 </html>

@@ -66,7 +66,6 @@ public class ManageUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Fetch the list of users from the database
-        // Fetch the list of users from the database
         ResultSet userList = getAllUsers();
         request.setAttribute("userList", userList);
         request.getRequestDispatcher("view_users.jsp").forward(request, response);
@@ -95,7 +94,7 @@ public class ManageUsersServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM TRAVELER");
             return stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

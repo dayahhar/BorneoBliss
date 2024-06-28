@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : report
     Created on : Jun 27, 2024, 10:51:55 PM
@@ -99,6 +100,8 @@
         
         <!-- Pie Chart -->
         <canvas id="bookingStatusChart" width="400" height="400"></canvas>
+        <!-- Bar Chart for Sales Report -->
+        <canvas id="salesReportChart" width="400" height="400"></canvas>
     </main>
     <footer>
         <p>&copy; 2024 Borneo Bliss Management System</p>
@@ -152,33 +155,36 @@
         
         // Sales Report Generation Script
         function generateSalesReport() {
-            // Fetch sales data using AJAX or Fetch API
             fetch('/getSalesReport')
                 .then(response => response.json())
                 .then(data => {
-                    displaySalesReport(data);
+                    const ctx = document.getElementById('salesReportChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: Object.keys(data),
+                            datasets: [{
+                                label: 'Sales Report',
+                                data: Object.values(data),
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
                 })
-                .catch(error => {
-                    console.error('Error fetching sales report:', error);
-                });
+                .catch(error => console.error('Error fetching sales report:', error));
         }
 
-        function displaySalesReport(data) {
-            const reportContainer = document.getElementById('reportContainer');
-            let reportHTML = `<h3>Sales Report</h3>`;
-            data.sales.forEach(sale => {
-                reportHTML += `
-                    <p>Booking ID: ${sale.bookingId}</p>
-                    <p>Amount: ${sale.amount}</p>
-                    <p>Date: ${sale.date}</p>
-                    <hr>
-                `;
-            });
-            reportContainer.innerHTML = reportHTML;
-        }
-        
-        
-        document.addEventListener('DOMContentLoaded', function() {
+        // Booking Status Pie Chart
+        document.addEventListener('DOMContentLoaded', function () {
             fetch('/getBookingStatus')
                 .then(response => response.json())
                 .then(data => {

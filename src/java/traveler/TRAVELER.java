@@ -15,13 +15,15 @@ public class TRAVELER {
     private String name;
     private String email;
     private String phoneNo;
+    private String password;
 
-    public TRAVELER(String userID, String username, String name, String email, String phoneNo) {
+    public TRAVELER(String userID, String username, String name, String email, String phoneNo, String password) {
         this.userID = userID;
         this.username = username;
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;
+        this.password = password;
     }
     
     public TRAVELER() {
@@ -30,6 +32,7 @@ public class TRAVELER {
         name = "";
         email = "";
         phoneNo = "";
+        password = "";
     }
 
     public String getUserID() {
@@ -50,6 +53,10 @@ public class TRAVELER {
 
     public String getPhoneNo() {
         return phoneNo;
+    }
+    
+    public String getPassword() {
+        return password;
     }
 
     public void setUserID(String userID) {
@@ -72,5 +79,8 @@ public class TRAVELER {
         this.phoneNo = phoneNo;
     }
     
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 }

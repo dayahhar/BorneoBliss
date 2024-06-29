@@ -4,7 +4,16 @@
     Author     : Alesha Ruzi
 --%>
 
+<%@page import="traveler.TRAVELER"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%-- Fetch user details based on userId parameter --%>
+<%
+    String userId = request.getParameter("userId");
+    TRAVELER user = getUserDetails(userId);
+    request.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

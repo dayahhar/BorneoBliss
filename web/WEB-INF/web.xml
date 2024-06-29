@@ -44,6 +44,10 @@
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>controller.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>pieChart</servlet-name>
+        <servlet-class>pieChart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/BookingServlet</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pieChart</servlet-name>
+        <url-pattern>/pieChart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

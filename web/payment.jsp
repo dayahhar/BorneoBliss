@@ -13,6 +13,9 @@
         response.sendRedirect("login.jsp");
         return;
     }
+
+    String bookingID = request.getParameter("bookingID");
+    String userID = request.getParameter("userID");
 %>
 
 <!DOCTYPE html>
@@ -36,15 +39,15 @@
         <a href="aboutus.html">About Us</a>
         <a href="contact.html">Contact</a>
         <div class="booking-nav">
-                <div class="dropdown">
-                    <span class="booking">Booking</span>
-                    <div class="dropdown-content">
-                        <a href="create_booking.jsp">Book Now</a>
-                        <a href="check_booking.jsp">Check Booking</a>
-                    </div>
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
-        <a href="ViewProfile.jsp">Profile</a>
+        <a href="viewProfile.jsp">Profile</a>
         <a href="login.jsp">Log In</a>
     </nav>
     <div class="main">
@@ -63,10 +66,10 @@
             <input type="number" id="cvv" name="cvv" required><br>
 
             <label for="bookingID">Booking ID:</label>
-            <input type="text" id="bookingID" name="bookingID" required><br>
+            <input type="text" id="bookingID" name="bookingID" value="<%= bookingID %>" required readonly><br>
 
             <label for="userID">User ID:</label>
-            <input type="text" id="userID" name="userID" value="<%= ((User) session.getAttribute("user")).getUsername() %>" required readonly><br>
+            <input type="text" id="userID" name="userID" value="<%= userID %>" required readonly><br>
 
             <input type="submit" value="Pay">
         </form>

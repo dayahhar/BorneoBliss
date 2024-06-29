@@ -16,19 +16,22 @@ public class PAYMENT {
     private String expiryDate;
     private int cvv;
     private String userID;
+    private String paymentStatus;
 
     public PAYMENT() {
     }
 
-    public PAYMENT(String paymentID, double amount, String cardNumber, String expiryDate, int cvv, String userID) {
+    public PAYMENT(String paymentID, double amount, String cardNumber, String expiryDate, int cvv, String userID, String paymentStatus) {
         this.paymentID = paymentID;
         this.amount = amount;
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
         this.userID = userID;
+        this.paymentStatus = paymentStatus;
     }
 
+    
     public String getPaymentID() {
         return paymentID;
     }
@@ -75,6 +78,14 @@ public class PAYMENT {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     

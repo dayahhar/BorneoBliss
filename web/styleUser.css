@@ -284,7 +284,25 @@
         .book-now-btn:hover {
             background-color: #003366;
         }
+        .update-profile-btn {
+            background-color: #2359B2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
 
+        .update-profile-btn:hover {
+            background-color: #003366;
+        }
+        
         ul {
             text-align: left;
             margin-left: 20px;

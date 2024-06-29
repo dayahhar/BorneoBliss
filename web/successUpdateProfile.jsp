@@ -1,20 +1,21 @@
 <%-- 
-    Document   : ViewProfile
-    Created on : Jun 28, 2024, 2:31:50 PM
+    Document   : successUpdateProfile
+    Created on : Jun 28, 2024, 2:34:50 PM
     Author     : Alesha Ruzi
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROFILE - BORNEO BLISS TRAVEL</title>
+    <title>Success Update Profile - BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
+  
 </head>
-    <body>
-        <header>
+<body>
+    <header>
         <h1>Welcome to Borneo Bliss Travel</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
@@ -37,23 +38,17 @@
         <a href="ViewProfile.jsp">Profile</a>
         <a href="login.jsp">Log In</a>
     </nav>
-        <div class="main">
-        <h2>Profile Details</h2>
-        <div class="profile-details">
-            <p><strong>Username:</strong> ${user.username}</p>
-            <p><strong>Name:</strong> ${user.name}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <p><strong>Phone Number:</strong> ${user.phone}</p>
-        </div>
-        <a href="updateProfile.jsp"><button class="update-profile-btn">Update Profile</button></a>
+    <div class="message">
+        <h1 align="center">Profile Updated Successfully!</h1>
         <a href="index.html"><button class="goback-btn">Go Back to Home Page</button></a>
     </div>
-        <footer>
+    <footer>
         <div class="contact-info">
             <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
             <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
         </div>
         <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
-         </footer>
-    </body>
+        </footer>
+</body>
 </html>
+

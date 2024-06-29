@@ -39,35 +39,34 @@
     </nav>
         
      
-        <div class="profile-container">
-        <h1>Update Profile</h1>
+        <div class="main">
+        <h2>Update Profile</h2>
         <form action="updateProfile.jsp" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="${user.username}" required>
+                <input type="text" id="username" name="username" value="${user.username}" >
             </div>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="${user.name}" required>
+                <input type="text" id="name" name="name" value="${user.name}" >
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="${user.email}" required>
+                <input type="email" id="email" name="email" value="${user.email}" >
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" value="${user.phone}" required>
+                <input type="tel" id="phone" name="phone" value="${user.phone}" >
             </div>
-            <div class="profile-buttons">
-                <button type="submit">Update</button>
-                <button type="button" onclick="goToHomePage()">Back to Home Page</button>
-            </div>
+            <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>
+            <a href="viewProfile.jsp"><button class="goback-btn">Go Back to Profile</button></a>
+            
         </form>
     </div>
 
     <script>
         function goToHomePage() {
-            window.location.href = 'index.html'; // Assuming home.jsp is the home page
+            window.location.href = 'index.html'; // Assuming index.html is the home page
         }
     </script>
         <footer>

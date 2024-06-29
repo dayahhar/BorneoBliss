@@ -41,13 +41,13 @@ public class ApprovalBookingServlet extends HttpServlet {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            String query = "SELECT A.BOOKINGID, A.BOOKINGDATE, A.TRAVELDATE, A.USERID, A.BOOKINGPAX, A.BOOKINGSTATUS, " +
+            String query = "SELECT B.BOOKINGID, B.BOOKINGDATE, B.TRAVELDATE, B.USERID, B.BOOKINGPAX, B.BOOKINGSTATUS, " +
                            "P.PACKAGEID, P.PACKAGENAME, P.PACKAGEPRICE, P.PACKAGESTATE, " +
                            "PAY.PAYMENTID, PAY.AMOUNT, PAY.PAYMENTSTATUS " +
-                           "FROM APPENDING A " +
-                           "INNER JOIN PACKAGE P ON A.PACKAGEID = P.PACKAGEID " +
-                           "INNER JOIN PAYMENT PAY ON A.BOOKINGID = PAY.BOOKINGID " +
-                           "WHERE A.BOOKINGSTATUS = 'PENDING'";
+                           "FROM BOOKING B " +
+                           "INNER JOIN PACKAGE P ON B.PACKAGEID = P.PACKAGEID " +
+                           "INNER JOIN PAYMENT PAY ON B.BOOKINGID = PAY.BOOKINGID " +
+                           "WHERE B.BOOKINGSTATUS='PENDING'";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
 

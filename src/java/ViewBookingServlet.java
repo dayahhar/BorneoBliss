@@ -28,7 +28,7 @@ public class ViewBookingServlet extends HttpServlet {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            String query = "SELECT * FROM APPENDING UNION SELECT * FROM CONFIRMED";
+            String query = "SELECT * FROM BOOKING";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
 
@@ -57,6 +57,8 @@ public class ViewBookingServlet extends HttpServlet {
                 } else if (bookingStatus.equals("APPROVED")) {
                     buttonText = "Check Booking";
                     formAction = "CheckBookingServlet";
+                } else {
+                    
                 }
              
 

@@ -3,10 +3,12 @@
     Created on : Jun 28, 2024, 2:28:21 AM
     Author     : syahira
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approve Bookings</title>
     <link rel="stylesheet" href="styleAdmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

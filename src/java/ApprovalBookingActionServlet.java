@@ -33,8 +33,8 @@ public class ApprovalBookingActionServlet extends HttpServlet {
 
     if (bookingID != null && !bookingID.isEmpty()) {
         Connection conn = null;
-        PreparedStatement insertStmt = null;
-        PreparedStatement deleteStmt = null;
+        PreparedStatement updateStmt = null;
+      
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -42,47 +42,30 @@ public class ApprovalBookingActionServlet extends HttpServlet {
             conn.setAutoCommit(false); // Disable auto-commit to manage transactions
 
             // Insert into CONFIRMED table after approval
-            String insertQuery = "INSERT INTO CONFIRMED (BOOKINGID, BOOKINGDATE, TRAVELDATE, USERID, PACKAGEID, BOOKINGPAX, BOOKINGSTATUS) " +
-                                 "SELECT A.BOOKINGID, A.BOOKINGDATE, A.TRAVELDATE, A.USERID, A.PACKAGEID, A.BOOKINGPAX, 'APPROVED' " +
-                                 "FROM APPENDING A " +
-                                 "WHERE A.BOOKINGID = ?";
-            insertStmt = conn.prepareStatement(insertQuery);
-            insertStmt.setString(1, bookingID);
-            int rowsInserted = insertStmt.executeUpdate();
+            String updateQuery = "UPDATE BOOKING SET BOOKINGSTATUS = 'APPROVED' WHERE BOOKINGID = ?";
+            updateStmt = conn.prepareStatement(updateQuery);
+                updateStmt.setString(1, bookingID);
+                int rowsUpdated = updateStmt.executeUpdate();
 
-            if (rowsInserted > 0) {
-                // Delete from APPENDING table after insertion into CONFIRMED
-                String deleteQuery = "DELETE FROM APPENDING WHERE BOOKINGID = ?";
-                deleteStmt = conn.prepareStatement(deleteQuery);
-                deleteStmt.setString(1, bookingID);
-                int rowsDeleted = deleteStmt.executeUpdate();
-
-                if (rowsDeleted > 0) {
+                if (rowsUpdated > 0) {
                     conn.commit(); // Commit the transaction
-                    // Redirect back to ApprovalBookingServlet
-                    response.sendRedirect(request.getContextPath() + "/ApprovalBookingServlet");
+                    response.getWriter().println("Booking approved successfully.");
                 } else {
-                    conn.rollback(); // Rollback if deletion fails
-                    response.getWriter().println("Failed to delete booking from APPENDING table.");
+                    response.getWriter().println("Booking ID not found.");
                 }
-            } else {
-                conn.rollback(); // Rollback if insertion into CONFIRMED fails
-                response.getWriter().println("Failed to insert into CONFIRMED table.");
-            }
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Handle your exceptions appropriately
-            response.getWriter().println("Failed to update booking status.");
-            try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
-        } finally {
-            // Close resources and enable auto-commit
-            try { if (insertStmt != null) insertStmt.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (deleteStmt != null) deleteStmt.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (conn != null) { conn.setAutoCommit(true); conn.close(); } } catch (SQLException e) { e.printStackTrace(); }
+                e.printStackTrace(); // Handle exceptions appropriately
+                response.getWriter().println("Failed to update booking status.");
+                try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
+            } finally {
+                // Close resources and enable auto-commit
+                try { if (updateStmt != null) updateStmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+                try { if (conn != null) { conn.setAutoCommit(true); conn.close(); } } catch (SQLException e) { e.printStackTrace(); }
+            }
+        } else {
+            response.getWriter().println("Invalid booking ID.");
         }
-    } else {
-        response.getWriter().println("Invalid booking ID.");
-    }
 }
 
 }

@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,36 +23,34 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SignupServlet", urlPatterns = {"/SignupServlet"})
 public class SignupServlet extends HttpServlet {
 
-    private static final String urlDB = "jdbc:derby://localhost:1527/BorneoDB";
-    private static final String usernameDB = "app";
-    private static final String passwordDB = "app";
+    String urlDB = "jdbc:derby://localhost:1527/BorneoDB";
+    String usernameDB = "app";
+    String passwordDB = "app";
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve form parameters
         String name = request.getParameter("name");
         String email = request.getParameter("email");
+        String phoneNo = request.getParameter("phoneNo");
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
+        String userpassword = request.getParameter("userpassword");
+        
         // Simulate saving the user data
-        boolean isSaved = saveUser(name, email, username, password);
+        boolean isSaved = saveUser(name, email, phoneNo, username, userpassword);
 
         if (isSaved) {
             // Redirect to success page
             response.sendRedirect("success_signup.jsp");
         } else {
-            // Registration failed, redirect back to signup with error message
-            response.sendRedirect("signup.jsp?error=Unable to sign up. Please try again.");
+            response.sendRedirect("signup.jsp?error=Unable To Sign Up, Please Try Again");
         }
     }
 
-        private boolean saveUser(String name, String email, String username, String userpassword) {
-        boolean isSaved = false;
-
-        // JDBC variables
+    private boolean saveUser(String name, String email, String phoneNo, String username, String userpassword) {
         Connection connection = null;
         PreparedStatement statement = null;
+        ResultSet rs = null;
 
         try {
             // Load the JDBC driver
@@ -61,33 +59,59 @@ public class SignupServlet extends HttpServlet {
             // Establish a connection to the database
             connection = DriverManager.getConnection(urlDB, usernameDB, passwordDB);
 
+            // Check if the username already exists
+            String queryCheck = "SELECT USERNAME FROM TRAVELER WHERE USERNAME = ?";
+            statement = connection.prepareStatement(queryCheck);
+            statement.setString(1, username);
+            rs = statement.executeQuery();
+            
+            if (rs.next()) {
+                return false;
+            }
+            
+            rs.close();
+            statement.close();
+            
+            // Generate a new user ID
+            String queryMaxId = "SELECT MAX(USERID) AS max_id FROM TRAVELER";
+            statement = connection.prepareStatement(queryMaxId);
+            rs = statement.executeQuery();
+            String newUserID = "US01"; // Default value if no existing records
+
+            if (rs.next() && rs.getString("max_id") != null) {
+                String currentMaxId = rs.getString("max_id");
+                int currentIdNum = Integer.parseInt(currentMaxId.substring(2));
+                newUserID = "US" + String.format("%02d", currentIdNum + 1);
+            }
+            
+            rs.close();
+            statement.close();
+            
             // Prepare the SQL insert statement
-            String sql = "INSERT INTO traveler (name, email, username, userpassword) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO TRAVELER (USERID, USERNAME, EMAIL, PHONENO, NAME, USERPASSWORD) VALUES (?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
-            statement.setString(1, name);
-            statement.setString(2, email);
-            statement.setString(3, username);
-            statement.setString(4, userpassword);
+            statement.setString(1, newUserID);
+            statement.setString(2, username);
+            statement.setString(3, email);
+            statement.setString(4, phoneNo);
+            statement.setString(5, name);
+            statement.setString(6, userpassword);
 
             // Execute the insert statement
             int rowsInserted = statement.executeUpdate();
 
-            // If at least one row was inserted, set isSaved to true
-            if (rowsInserted > 0) {
-                isSaved = true;
-            }
+            return rowsInserted > 0;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
-            // Close resources
             try {
+                if (rs != null) rs.close();
                 if (statement != null) statement.close();
                 if (connection != null) connection.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-        return isSaved;
     }
 }

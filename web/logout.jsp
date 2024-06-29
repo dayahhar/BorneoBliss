@@ -27,7 +27,10 @@
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
         <link rel="stylesheet" href="styleUser.css">
     </header>
-    <div align="center" class="message">You are being redirected, please wait....</div>
+    <div align="center" class="message">
+        <h1 align="center">Log Out Successful!</h1>
+        <p align="center">See You Again!</p>
+        You are being redirected, please wait....</div>
     <footer>
         <div class="contact-info">
             <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>

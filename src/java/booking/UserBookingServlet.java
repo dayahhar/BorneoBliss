@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package booking;
 
 import java.io.IOException;
@@ -68,7 +63,6 @@ public class UserBookingServlet extends HttpServlet {
             return;
         }
 
-        String bookingID = request.getParameter("bookingID");
         Date bookingDate = Date.valueOf(request.getParameter("bookingDate"));
         Date travelDate = Date.valueOf(request.getParameter("travelDate"));
         String packageID = request.getParameter("package");
@@ -77,14 +71,13 @@ public class UserBookingServlet extends HttpServlet {
 
         try {
             Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO BOOKING (BOOKINGID, BOOKINGDATE, TRAVELDATE, USERID, PACKAGEID, BOOKINGPAX, BOOKINGSTATUS) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, bookingID);
-            stmt.setDate(2, bookingDate);
-            stmt.setDate(3, travelDate);
-            stmt.setString(4, userID);
-            stmt.setString(5, packageID);
-            stmt.setInt(6, bookingPax);
-            stmt.setString(7, bookingStatus);
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO BOOKING (BOOKINGDATE, TRAVELDATE, USERID, PACKAGEID, BOOKINGPAX, BOOKINGSTATUS) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setDate(1, bookingDate);
+            stmt.setDate(2, travelDate);
+            stmt.setString(3, userID);
+            stmt.setString(4, packageID);
+            stmt.setInt(5, bookingPax);
+            stmt.setString(6, bookingStatus);
             stmt.executeUpdate();
             stmt.close();
             conn.close();

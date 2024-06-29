@@ -5,6 +5,11 @@
  */
 package traveler;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Aqilah05
@@ -83,4 +88,35 @@ public class TRAVELER {
         this.password = password;
     }
     
+    public String getName(String username) {
+        String name = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BorneoDB", "app", "app");
+
+            stm = conn.prepareStatement("SELECT NAME FROM TRAVELER WHERE USERNAME = ?");
+            stm.setString(1, username);
+
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                name = rs.getString("NAME");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return name;
+    }
 }

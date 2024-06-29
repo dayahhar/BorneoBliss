@@ -1,22 +1,23 @@
 <%-- 
-    Document   : login
-    Created on : Jun 28, 2024, 9:24:21 AM
+    Document   : loginAdmin
+    Created on : Jun 29, 2024, 9:35:16 PM
     Author     : nurna
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
+<%@ page import="controller.LoginAdminServlet" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Log In - BORNEO BLISS TRAVEL</title>
+    <title>Log In As Admin- BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
     <header>
         <h1>Welcome to Borneo Bliss Travel</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
-        <link rel="stylesheet" href="styleUser.css">
     </header>
     <nav>
         <a href="index.html">
@@ -26,35 +27,38 @@
         <a href="aboutus.html">About Us</a>
         <a href="contact.html">Contact</a>
         <div class="booking-nav">
-            <div class="dropdown">
-                <span class="booking">Booking</span>
-                <div class="dropdown-content">
-                    <a href="create_booking.jsp">Book Now</a>
-                    <a href="check_booking.jsp">Check Booking</a>
+                <div class="dropdown">
+                    <span class="booking">Booking</span>
+                    <div class="dropdown-content">
+                        <a href="create_booking.jsp">Book Now</a>
+                        <a href="check_booking.jsp">Check Booking</a>
+                    </div>
                 </div>
-            </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <a href="login.jsp">Log In</a> <!-- This link might be changed to a logout or profile link after login -->
+        <div class="login-nav">
+                <div class="dropdown">
+                    <span class="login">Log In</span>
+                    <div class="dropdown-content">
+                        <a href="loginAdmin.jsp">Log In Admin</a>
+                        <a href="loginUser.jsp">Log In Traveler</a>
+                    </div>
+                </div>
+        </div>
     </nav>
     <div class="main">
-        <h2>Log In</h2>
-        <form action="LoginServlet" method="POST">
-            <label for="role">Log In As:</label>
-            <select id="role" name="role" required>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-            </select>
+        <h2>Log In As Admin</h2>
+        <form action="<%=request.getContextPath()%>/LoginAdminServlet" method="POST">
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="adminUsername" required>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="adminPassword" required>
 
             <input type="submit" value="Log In">
         </form>
-        <p>Don't have an account? <a href="signup.jsp">Sign up here</a></p>
+        <p><a href="index.html">Back to Home</a></p>
     </div>
     <footer>
         <div class="contact-info">

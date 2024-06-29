@@ -5,6 +5,7 @@
  */
 package controller;
 
+import traveler.TRAVELER;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,49 +22,43 @@ import javax.servlet.http.HttpSession;
  *
  * @author nurna
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-    
-    private static final String urlDB = "jdbc:derby://localhost:1527/BorneoDB";
-    private static final String usernameDB = "app";
-    private static final String passwordDB = "app";
+@WebServlet(name = "LoginUserServlet", urlPatterns = {"/LoginUserServlet"})
+public class LoginUserServlet extends HttpServlet {
 
+    String urlDB = "jdbc:derby://localhost:1527/BorneoDB";
+    String usernameDB = "app";
+    String passwordDB = "app";
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
-        // Retrieve form parameters
-        String role = request.getParameter("role");
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String userpassword = request.getParameter("userpassword");
         
         // Perform authentication
-        boolean isAuthenticated = authenticateUser(role, username, password);
+        boolean isAuthenticated = authenticateUser(username, userpassword);
 
         if (isAuthenticated) {
+            String name = new TRAVELER().getName(username);
             // Create a session and store user details
             HttpSession session = request.getSession();
-            session.setAttribute("role", role);
             session.setAttribute("username", username);
-
-            // Redirect based on role
-            if ("admin".equalsIgnoreCase(role)) {
-                response.sendRedirect("admin.jsp");
-            } else {
-                response.sendRedirect("index.html");
-            }
+            session.setAttribute("name", name);
+            
+            response.sendRedirect(request.getContextPath() + "/home.jsp"); 
         } else {
             // Authentication failed, redirect back to login with error message
-            response.sendRedirect("login.jsp?error=Invalid username or password");
+            response.sendRedirect(request.getContextPath() + "/loginUser.jsp?error=Invalid username or password");
         }
     }
 
-    private boolean authenticateUser(String role, String username, String password) {
+    private boolean authenticateUser(String username, String userpassword) {
         boolean isAuthenticated = false;
 
         // JDBC variables
         Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
 
         try {
             // Load the JDBC driver
@@ -72,22 +67,15 @@ public class LoginServlet extends HttpServlet {
             // Establish a connection to the database
             conn = DriverManager.getConnection(urlDB, usernameDB, passwordDB);
 
-            // Prepare the SQL query based on role
-            String sql;
-            if ("admin".equalsIgnoreCase(role)) {
-                sql = "SELECT * FROM admin WHERE ADMINUSERNAME = ? AND ADMINPASSWORD = ?";
-            } else {
-                sql = "SELECT * FROM traveler WHERE USERNAME = ? AND USERPASSWORD = ?";
-            }
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, password);
+            stm = conn.prepareStatement("SELECT * FROM TRAVELER WHERE USERNAME = ? AND USERPASSWORD = ?");
+            stm.setString(1, username);
+            stm.setString(2, userpassword);
 
             // Execute the query
-            resultSet = statement.executeQuery();
+            rs = stm.executeQuery();
 
             // Check if a matching user was found
-            if (resultSet.next()) {
+            if (rs.next()) {
                 isAuthenticated = true;
             }
         } catch (Exception e) {
@@ -95,14 +83,13 @@ public class LoginServlet extends HttpServlet {
         } finally {
             // Close resources
             try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
                 if (conn != null) conn.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         return isAuthenticated;
     }
 }

@@ -13,21 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <link rel="stylesheet" href="styleUser.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .message {
-            font-size: 18px;
-            color: #333;
-        }
-    </style>
     <script>
         function redirect() {
             setTimeout(function() {
@@ -37,7 +22,19 @@
     </script>
 </head>
 <body onload="redirect()">
-    <div class="message">You are being redirected, please wait....</div>
+    <header>
+        <h1>Welcome to Borneo Bliss Travel</h1>
+        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
+        <link rel="stylesheet" href="styleUser.css">
+    </header>
+    <div align="center" class="message">You are being redirected, please wait....</div>
+    <footer>
+        <div class="contact-info">
+            <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>
+            <p>Address: 123 Borneo St, Kota Kinabalu, Malaysia</p>
+        </div>
+        <p>&copy; 2024 Borneo Bliss Travel. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 

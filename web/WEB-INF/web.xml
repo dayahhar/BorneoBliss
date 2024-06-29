@@ -25,10 +25,6 @@
         <servlet-class>CheckBookingServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
@@ -41,12 +37,16 @@
         <servlet-class>controller.AdminServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>pieChart</servlet-name>
-        <servlet-class>pieChart</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UserCheckBookingServlet</servlet-name>
         <servlet-class>UserCheckBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginAdminServlet</servlet-name>
+        <servlet-class>controller.LoginAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginUserServlet</servlet-name>
+        <servlet-class>controller.LoginUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
@@ -73,10 +73,6 @@
         <url-pattern>/CheckBookingServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
@@ -89,12 +85,16 @@
         <url-pattern>/AdminServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>pieChart</servlet-name>
-        <url-pattern>/pieChart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>UserCheckBookingServlet</servlet-name>
         <url-pattern>/UserCheckBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginAdminServlet</servlet-name>
+        <url-pattern>/LoginAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginUserServlet</servlet-name>
+        <url-pattern>/LoginUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

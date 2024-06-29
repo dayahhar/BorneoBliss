@@ -38,7 +38,7 @@
     </nav>
     <div class="main">
         <h2>Book Your Adventure</h2>
-        <form action="BookingServlet" method="POST">
+        <form action="UserBookingServlet" method="POST">
             <input type="hidden" name="action" value="create">
 
             <label for="bookingDate">Booking Date:</label>

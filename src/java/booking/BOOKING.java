@@ -1,5 +1,5 @@
 package booking;
-
+import java.util.Date;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,21 +12,24 @@ package booking;
  */
 public class BOOKING {
     private String bookingID;
-    private String bookingDate;
-    private String travelDate;
+    private Date bookingDate;
+    private Date travelDate;
     private String userID;
     private String packageID;
     private int bookingPax;
     private String bookingStatus;
 
     public BOOKING() {
-        bookingID = "";
-        bookingDate = "";
-        travelDate = "";
-        userID = "";
-        packageID = "";
-        bookingPax = 0;
-        bookingStatus = "";
+    }
+
+    public BOOKING(String bookingID, Date bookingDate, Date travelDate, String userID, String packageID, int bookingPax, String bookingStatus) {
+        this.bookingID = bookingID;
+        this.bookingDate = bookingDate;
+        this.travelDate = travelDate;
+        this.userID = userID;
+        this.packageID = packageID;
+        this.bookingPax = bookingPax;
+        this.bookingStatus = bookingStatus;
     }
 
     public String getBookingID() {
@@ -37,22 +40,22 @@ public class BOOKING {
         this.bookingID = bookingID;
     }
 
-    public String getBookingDate() {
+    public Date getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(String bookingDate) {
+    public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public String getTravelDate() {
+    public Date getTravelDate() {
         return travelDate;
     }
 
-    public void setTravelDate(String travelDate) {
+    public void setTravelDate(Date travelDate) {
         this.travelDate = travelDate;
     }
-    
+
     public String getUserID() {
         return userID;
     }
@@ -84,4 +87,5 @@ public class BOOKING {
     public void setBookingStatus(String bookingStatus) {
         this.bookingStatus = bookingStatus;
     }
+    
 }

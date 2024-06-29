@@ -29,34 +29,35 @@
                 </div>
             </div>
         </div>
-        <a href="ViewProfile.jsp">Profile</a>
+        <a href="viewProfile.jsp">Profile</a>
         <a href="login.jsp">Log In</a>
     </nav>
     <div class="main">
         <h2>Check Your Booking</h2>
+        <%
+            List<BOOKING> bookings = (List<BOOKING>) request.getAttribute("bookings");
+            if (bookings != null && !bookings.isEmpty()) {
+        %>
         <table border="1">
             <thead>
                 <tr>
                     <th>Booking ID</th>
                     <th>Booking Date</th>
                     <th>Travel Date</th>
-                    <th>User ID</th>
                     <th>Package ID</th>
                     <th>Number of Pax</th>
                     <th>Booking Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <%
-                    List<BOOKING> bookings = (List<BOOKING>) request.getAttribute("bookings");
-                    if (bookings != null) {
-                        for (BOOKING booking : bookings) {
+                    for (BOOKING booking : bookings) {
                 %>
                 <tr>
                     <td><%= booking.getBookingID() %></td>
                     <td><%= booking.getBookingDate() %></td>
                     <td><%= booking.getTravelDate() %></td>
-                    <td><%= booking.getUserID() %></td>
                     <td><%= booking.getPackageID() %></td>
                     <td><%= booking.getBookingPax() %></td>
                     <td><%= booking.getBookingStatus() %></td>
@@ -70,17 +71,17 @@
                     </td>
                 </tr>
                 <%
-                        }
-                    } else {
-                %>
-                <tr>
-                    <td colspan="8">No bookings found.</td>
-                </tr>
-                <%
                     }
                 %>
             </tbody>
         </table>
+        <%
+            } else {
+        %>
+        <p>No booking is made by the user.</p>
+        <%
+            }
+        %>
     </div>
     <footer>
         <div class="contact-info">

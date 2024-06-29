@@ -30,53 +30,175 @@
             const bookingId = urlParams.get('bookingId');
             document.getElementById('bookingId').textContent = bookingId;
 
-            // Fetch booking report data using AJAX or Fetch API
-            fetch('/getBookingReport?bookingId=' + bookingId)
-                .then(response => response.json())
-                .then(data => {
-                    displayBookingReport(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching booking report:', error);
-                });
+            // Display appropriate table based on bookingId
+            displayTable(bookingId);
         });
 
-        function displayBookingReport(data) {
+        function displayTable(bookingId) {
             const reportContent = document.getElementById('reportContent');
-            let reportHTML = `
-                <p>Traveler Name: ${data.travelerName}</p>
-                <p>Booking Date: ${data.bookingDate}</p>
-                <p>Travel Date: ${data.travelDate}</p>
-                <p>Details: ${data.details}</p>
-            `;
-            reportContent.innerHTML = reportHTML;
+            let tableHTML = '';
+
+            if (bookingId === 'B001') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B001</td>
+                                <td>Sarah Johnson</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$1500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            } else if (bookingId === 'B002') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B002</td>
+                                <td>Amirul Hakim bin Mohd Zain</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$3500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            }else if (bookingId === 'B003') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B003</td>
+                                <td>Lee Cheng Wei</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$5000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            }else if (bookingId === 'B004') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B004</td>
+                                <td>Park Ji-hye</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$5000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            }else if (bookingId === 'B005') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B005</td>
+                                <td>Aina Sofea binti Abdul Rahman</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$5000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            }else if (bookingId === 'B006') {
+                tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer Name</th>
+                                <th>Package Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B006</td>
+                                <td>Nur Aisyah binti Ahmad</td>
+                                <td>Beach Vacation</td>
+                                <td>20-06-2024</td>
+                                <td>Confirmed</td>
+                                <td>$5000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+            }
+            
+        else {
+                tableHTML = '<p>No booking data available.</p>';
+            }
+
+            reportContent.innerHTML = tableHTML;
         }
     </script>
 </body>
-<table>
-                <thead>
-                    <tr>
-                        <th>Booking ID</th>
-                        <th>Customer Name</th>
-                        <th>Package Name</th>
-                        <th>Booking Date</th>
-                        <th>Status</th>
-                        <th>Total Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>B001</td>
-                        <td>Sarah Johnson</td>
-                        <td>Beach Vacation</td>
-                        <td>20-06-2024</td>
-                        <td>Confirmed</td>
-                        <td>$1500</td>
-                    </tr>
-                </tbody>
-            </table>
-<br><br><br><br><br>
- <footer>
-        <p>&copy; 2024 Borneo Bliss Management System</p>
-    </footer>
+<footer>
+    <p>&copy; 2024 Borneo Bliss Management System</p>
+</footer>
 </html>

@@ -48,7 +48,15 @@
             </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <a href="login.jsp">Log In</a>
+        <div class="login-nav">
+                <div class="dropdown">
+                    <span class="login">Log In</span>
+                    <div class="dropdown-content">
+                        <a href="loginAdmin.jsp">Log In Admin</a>
+                        <a href="loginUser.jsp">Log In Traveler</a>
+                    </div>
+                </div>
+        </div>
     </nav>
     <div class="main">
         <h2>Make Your Payment</h2>

@@ -11,7 +11,7 @@
             background-position: center;
             background-repeat: no-repeat;
             color: white;
-            padding: 3rem 0;
+            padding: 1rem 0;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -55,8 +55,8 @@
         }
 
         .main {
-            max-width: 500px;
-            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
@@ -383,7 +383,7 @@
             text-align: center;
         }
         
-        .booking {
+        .login {
             color: white;
             text-decoration: none;
             text-align: center;
@@ -393,13 +393,13 @@
             line-height: 50px;
             background: #333;
         }
-        .booking-nav {
+        .login-nav {
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #333;
         }
-        .booking-nav .booking {
+        .login-nav .login {
             color: white;
             text-decoration: none;
             text-align: center;
@@ -410,6 +410,6 @@
             background: #333;
             cursor: pointer;
         }
-        .booking-nav .booking:hover {
+        .login-nav .login:hover {
             background-color: #555; /* Change the background color on hover */
         }

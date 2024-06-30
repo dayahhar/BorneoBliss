@@ -4,7 +4,9 @@
     Author     : Alesha Ruzi
 --%>
 
+<%@page import="traveler.TRAVELER"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,13 +50,13 @@
         <div class="main">
         <h2>Profile Details</h2>
         <div class="profile-details">
-            <p><strong>Username:</strong> ${user.username}</p>
-            <p><strong>Name:</strong> ${user.name}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <p><strong>Phone Number:</strong> ${user.phone}</p>
+            <p><strong>Username:</strong> ${traveler.username}</p>
+            <p><strong>Name:</strong> ${traveler.name}</p>
+            <p><strong>Email:</strong> ${traveler.email}</p>
+            <p><strong>Phone Number:</strong> ${traveler.phone}</p>
         </div>
         <a href="updateProfile.jsp"><button class="update-profile-btn">Update Profile</button></a>
-        <a href="index.html"><button class="goback-btn">Go Back to Home Page</button></a>
+        <a href="home.jsp"><button class="goback-btn">Go Back to Home Page</button></a>
     </div>
         <footer>
         <div class="contact-info">

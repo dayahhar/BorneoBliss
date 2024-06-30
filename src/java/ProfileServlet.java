@@ -17,7 +17,7 @@ public class ProfileServlet extends HttpServlet {
     // Database connection parameters
     private static final String dbURL = "jdbc:derby://localhost:1527/BorneoDB";
     private static final String dbUser = "app"; // Replace with your DB username
-    private static final String dbPassword = "app"; // Replace with your DB password
+    private static final String dbUserpassword  = "app"; // Replace with your DB password
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,9 +42,10 @@ public class ProfileServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phoneNo = request.getParameter("phoneNo");
-        String password = request.getParameter("userpassword");
+        String userpassword  = request.getParameter("userpassword");
 
-        updateUserDetails(userId, username, name, email, phoneNo, password);
+        updateUserDetails(userId, username, name, email, phoneNo, userpassword );
+        response.sendRedirect("ProfileServlet?userId=" + userId + "&success=true");
         
         // Redirect to successUpdateProfile.jsp after updating the profile
         response.sendRedirect("successUpdateProfile.jsp");
@@ -63,8 +64,9 @@ public class ProfileServlet extends HttpServlet {
         }
 
         // Connect to the database and execute the query
-        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbUserpassword );
+        //try (Connection connection = ProfileServlet.getConnection(dbURL, dbUser, dbUserpassword );     
+        PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -87,7 +89,7 @@ public class ProfileServlet extends HttpServlet {
     private void updateUserDetails(String userID, String username, String name, String email, String phone, String userpassword) {
         String sql = "UPDATE TRAVELER SET username = ?, name = ?, email = ?, phoneNo = ?, userpassword = ? WHERE userID = ?";
 
-        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbUserpassword );
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, username);

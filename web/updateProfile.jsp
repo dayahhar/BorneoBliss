@@ -8,12 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%-- Fetch user details based on userId parameter --%>
-<%
-    String userId = request.getParameter("userId");
-    TRAVELER user = getUserDetails(userId);
-    request.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,29 +50,26 @@
         </div>
     </nav>
         
-     
         <div class="main">
         <h2>Update Profile</h2>
         <form action="updateProfile.jsp" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="${user.username}" >
+                <input type="text" id="username" name="username" value="${traveler.username}" >
             </div>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="${user.name}" >
+                <input type="text" id="name" name="name" value="${traveler.name}" >
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="${user.email}" >
+                <input type="email" id="email" name="email" value="${traveler.email}" >
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" value="${user.phone}" >
+                <input type="tel" id="phone" name="phone" value="${traveler.phone}" >
             </div>
-            <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>
-            <a href="viewProfile.jsp"><button class="goback-btn">Go Back to Profile</button></a>
-            
+            <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>       
         </form>
     </div>
 

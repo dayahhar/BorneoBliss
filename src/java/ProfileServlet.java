@@ -24,11 +24,11 @@ public class ProfileServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("username") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("loginUser.jsp");
             return;
         }
 
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter("userID");
         TRAVELER user = getUserDetails(userId);
 
         request.setAttribute("user", user);
@@ -37,12 +37,12 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter("userID");
         String username = request.getParameter("username");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phoneNo = request.getParameter("phoneNo");
-        String password = request.getParameter("password");
+        String password = request.getParameter("userpassword");
 
         updateUserDetails(userId, username, name, email, phoneNo, password);
         
@@ -53,7 +53,7 @@ public class ProfileServlet extends HttpServlet {
     private TRAVELER getUserDetails(String userId) throws ServletException {
         TRAVELER user = null;
 
-        String sql = "SELECT username, name, email, phoneNo, password FROM users WHERE userId = ?";
+        String sql = "SELECT username, name, email, phoneNo, userpassword FROM TRAVELER WHERE userID = ?";
 
         // Load the JDBC driver
         try {
@@ -74,7 +74,7 @@ public class ProfileServlet extends HttpServlet {
                     user.setName(resultSet.getString("name"));
                     user.setEmail(resultSet.getString("email"));
                     user.setPhoneNo(resultSet.getString("phoneNo"));
-                    user.setPassword(resultSet.getString("password")); // Add this line if password is required
+                    user.setUserPassword(resultSet.getString("userpassword")); // Add this line if password is required
                 }
             }
         } catch (SQLException e) {
@@ -84,8 +84,8 @@ public class ProfileServlet extends HttpServlet {
         return user;
     }
 
-    private void updateUserDetails(String userId, String username, String name, String email, String phone, String password) {
-        String sql = "UPDATE users SET username = ?, name = ?, email = ?, phoneNo = ?, password = ? WHERE userId = ?";
+    private void updateUserDetails(String userID, String username, String name, String email, String phone, String userpassword) {
+        String sql = "UPDATE TRAVELER SET username = ?, name = ?, email = ?, phoneNo = ?, userpassword = ? WHERE userID = ?";
 
         try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -94,8 +94,8 @@ public class ProfileServlet extends HttpServlet {
             statement.setString(2, name);
             statement.setString(3, email);
             statement.setString(4, phone);
-            statement.setString(5, password); // Add this line if password is required
-            statement.setString(6, userId);
+            statement.setString(5, userpassword); // Add this line if password is required
+            statement.setString(6, userID);
 
             statement.executeUpdate();
         } catch (SQLException e) {

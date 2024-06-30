@@ -28,6 +28,10 @@ public class UserBookingServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String userID = (String) session.getAttribute("userID");
 
+        if (userID == null) {
+            response.sendRedirect("loginUser.jsp");
+            return;
+        }
 
         List<BOOKING> bookings = new ArrayList<>();
         try {
@@ -42,14 +46,20 @@ public class UserBookingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
 
         if ("create".equals(action)) {
-            String userID = request.getParameter("userID");
+            String userID = (String) session.getAttribute("userID");
             String bookingDate = request.getParameter("bookingDate");
             String travelDate = request.getParameter("travelDate");
             String packageID = request.getParameter("packageID");
             int bookingPax = Integer.parseInt(request.getParameter("bookingPax"));
+
+            if (userID == null) {
+                response.sendRedirect("loginUser.jsp");
+                return;
+            }
 
             try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
                 String bookingID = generateBookingID(conn);

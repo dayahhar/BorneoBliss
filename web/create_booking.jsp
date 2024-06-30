@@ -3,15 +3,24 @@
     Created on : Jun 22, 2024, 11:53:32 PM
     Author     : dayah
 --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page import="booking.BOOKING" %>
+<%@ page import="booking.UserBookingServlet" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="javax.servlet.*" %>
 
+<sql:setDataSource var="myDatasource"
+    driver="org.apache.derby.jdbc.ClientDriver"
+    url="jdbc:derby://localhost:1527/BorneoDB" 
+    user="app"
+    password="app" />
+
 <%
-    if (session == null || session.getAttribute("travelerUsername") == null) {
+    if (session == null || session.getAttribute("userID") == null) {
         response.sendRedirect("loginUser.jsp");
         return;
     }
@@ -50,7 +59,7 @@
     </nav>
     <div class="main">
         <h2>Book Your Adventure</h2>
-        <form action="UserBookingServlet" method="POST">
+        <form action="UserBookingServlet" method="post">
             <input type="hidden" name="action" value="create">
             
             <label for="userID">User ID:</label>
@@ -96,3 +105,4 @@
     </footer>
 </body>
 </html>
+

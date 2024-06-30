@@ -106,7 +106,7 @@
             </table>
             
             <a href="create_booking.jsp"><button class="book-now-btn">Book Now!</button></a>
-            <a href="package.html"><button class="goback-btn">Go Back to Packages</button></a>
+            <a href="package_afterLogin.jsp"><button class="goback-btn">Go Back to Packages</button></a>
         </div>
     </div>
     <footer>

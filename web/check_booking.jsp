@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.travelerUsername}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
@@ -31,15 +31,8 @@
                 </div>
             </div>
         </div>
-        <%-- Check if user is logged in as admin or traveler --%>
-        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
-            <a href="viewProfile.jsp">Profile</a>
-            <a href="logout.jsp">Log Out</a>
-        </c:if>
-        <%-- Show logout option if user is logged in --%>
-        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
-            <a href="logout.jsp">Logout</a>
-        </c:if>
+        <a href="viewProfile.jsp">Profile</a>
+        <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
         <h2>Check Your Booking</h2>

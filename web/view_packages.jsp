@@ -1,12 +1,6 @@
-<%-- 
-    Document   : view_packages
-    Created on : Jun 28, 2024, 2:27:21 PM
-    Author     : Aqilah05
---%>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="packages.PACKAGE" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,35 +15,56 @@
         <p>Borneo Bliss Management System</p>
     </header>
     <nav>
-        <a href="admin.html" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
-        <a href="packageManage.html">Packages</a>
-        <a href="bookingApprove.html">Booking</a>
-        <a href="userProfile.html">Profile</a>
-        <a href="report.html">Report</a>
-        <a href="logout.html">Logout</a>
+        <a href="admin.jsp" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
+        <a href="view_packages.jsp">Packages</a>
+        <a href="view_bookings.jsp">Booking</a>
+        <a href="view_users.jsp">Profile</a>
+        <a href="report.jsp">Report</a>
+        <a href="logout.jsp">Logout</a>
     </nav>
     <main>
         <h2 style="margin-left:125px">Manage Packages</h2>
-        <button class="add-package-btn" onclick="window.location.href='add_packages.jsp'">Add Package</button>
+        
+        <!-- Display success message if available -->
+        <% 
+            String message = (String) session.getAttribute("message");
+            if (message != null) {
+        %>
+            <div class="success-message"><%= message %></div>
+        <% 
+                session.removeAttribute("message");
+            }
+        %>
+        
+        <button class="add-package-btn" onclick="window.location.href='addPackage.jsp'">Add Package</button>
         <div class="catalog">
             <%
-                ResultSet packages = (ResultSet) request.getAttribute("packages");
-                try {
-                    while (packages.next()) {
+                List<PACKAGE> packages = PACKAGE.getAllPackages();
+                if (packages != null && !packages.isEmpty()) {
+                    for (PACKAGE pkg : packages) {
             %>
             <div class="package">
-                <img src="<%= packages.getString("imageURL") %>" alt="Package Image">
+                <img src="<%= pkg.getImageURL() %>" alt="<%= pkg.getPackageName() %>">
                 <div class="package-details">
-                    <h3><%= packages.getString("packageName") %></h3>
-                    <p><%= packages.getString("packageDesc") %></p>
-                    <button onclick="window.location.href='edit_packages.jsp?id=<%= packages.getString("packageID") %>'">Update</button>
-                    <button onclick="confirmDelete('<%= packages.getString("packageID") %>')">Delete</button>
+                    <h3><%= pkg.getPackageName() %></h3>
+                    <p><%= pkg.getPackageDesc() %></p>
+                    <form action="updatePackage.jsp" method="post" style="display: inline;">
+                        <input type="hidden" name="packageID" value="<%= pkg.getPackageID() %>">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="ManagePackagesServlet" method="post" style="display: inline;">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="packageID" value="<%= pkg.getPackageID() %>">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this package?')">Delete</button>
+                    </form>
                 </div>
             </div>
             <%
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                } else {
+            %>
+            <p>No packages available.</p>
+            <%
                 }
             %>
         </div>

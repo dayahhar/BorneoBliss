@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +26,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ManageUsersServlet")
 public class ManageUsersServlet extends HttpServlet {
-    String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
-    String jdbcUsername = "app";
-    String jdbcPassword = "app";
+    private static final long serialVersionUID = 1L;
+    private static final String JDBC_URL = "jdbc:derby://localhost:1527/BorneoDB";
+    private static final String JDBC_USERNAME = "app";
+    private static final String JDBC_PASSWORD = "app";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -62,11 +66,8 @@ public class ManageUsersServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Fetch the list of users from the database
-        ResultSet userList = getAllUsers();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<TRAVELER> userList = getAllUsers();
         request.setAttribute("userList", userList);
         request.getRequestDispatcher("view_users.jsp").forward(request, response);
     }
@@ -79,7 +80,6 @@ public class ManageUsersServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if ("delete".equals(action)) {
@@ -89,25 +89,32 @@ public class ManageUsersServlet extends HttpServlet {
         response.sendRedirect("ManageUsersServlet");
     }
 
-    // Method to retrieve all users from the database
-    private ResultSet getAllUsers() {
+    private List<TRAVELER> getAllUsers() {
+        List<TRAVELER> userList = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM APP.TRAVELER");
+             ResultSet rs = stmt.executeQuery()) {
 
-        try {
-            Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM TRAVELER");
-            return stmt.executeQuery();
+            while (rs.next()) {
+                TRAVELER traveler = new TRAVELER(
+                        rs.getString("userID"),
+                        rs.getString("username"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phoneNo"),
+                        rs.getString("userPassword")
+                );
+                userList.add(traveler);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return userList;
     }
 
-    // Method to delete a user by ID
     private void deleteUser(String userId) {
-
-        try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-             PreparedStatement stmt = conn.prepareStatement("DELETE FROM TRAVELER WHERE id = ?")) {
-
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement("DELETE FROM APP.TRAVELER WHERE userID = ?")) {
             stmt.setString(1, userId);
             stmt.executeUpdate();
         } catch (SQLException e) {

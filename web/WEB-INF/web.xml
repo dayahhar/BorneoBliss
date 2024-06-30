@@ -9,6 +9,10 @@
         <servlet-class>ManageUsersServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManagePackagesServlet</servlet-name>
+        <servlet-class>ManagePackagesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ViewBookingServlet</servlet-name>
         <servlet-class>ViewBookingServlet</servlet-class>
     </servlet>
@@ -48,6 +52,10 @@
         <servlet-name>LoginUserServlet</servlet-name>
         <servlet-class>controller.LoginUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPackagesServlet</servlet-name>
+        <servlet-class>AddPackagesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/PaymentServlet</url-pattern>
@@ -55,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagePackagesServlet</servlet-name>
+        <url-pattern>/ManagePackagesServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewBookingServlet</servlet-name>
@@ -95,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>LoginUserServlet</servlet-name>
         <url-pattern>/LoginUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPackagesServlet</servlet-name>
+        <url-pattern>/AddPackagesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

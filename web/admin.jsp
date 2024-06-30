@@ -21,10 +21,10 @@
     </header>
     <nav>
         <a href="admin.jsp" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
-        <a href="packageManage.html">Packages</a>
+        <a href="view_packages.jsp">Packages</a>
         <a href="view_bookings.jsp">Booking</a>
-        <a href="viewProfile.jsp">Profile</a>
-        <a href="report.html">Report</a>
+        <a href="view_users.jsp">Profile</a>
+        <a href="report.jsp">Report</a>
         <a href="logout.jsp">Logout</a>
     </nav>
     <main>

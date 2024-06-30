@@ -22,11 +22,6 @@
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
-        <p>Your one-stop solution for managing all your travel needs around Borneo</p>
-    </header>
-    <nav>
         <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>

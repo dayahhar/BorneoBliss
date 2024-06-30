@@ -12,7 +12,7 @@
 
 <%
     if (session == null || session.getAttribute("travelerUsername") == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("loginUser.jsp");
         return;
     }
 %>

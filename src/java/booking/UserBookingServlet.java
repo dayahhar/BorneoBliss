@@ -28,10 +28,6 @@ public class UserBookingServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String userID = (String) session.getAttribute("userID");
 
-        if (userID == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
 
         List<BOOKING> bookings = new ArrayList<>();
         try {

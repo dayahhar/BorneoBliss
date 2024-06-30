@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-header">Simple Chatbot</div>
+        <div class="chat-header">BB Chatbot</div>
         <div class="chat-body" id="chatBody">
             <!-- Chat messages will be displayed here -->
         </div>
@@ -16,7 +16,6 @@
             <button id="submitBtn">Send</button>
         </div>
     </div>
-
     <script>
         const chatBody = document.getElementById('chatBody');
 
@@ -60,5 +59,75 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
     </script>
+    <style>
+        .chat-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #0084ff;
+            color: #fff;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .chat-body {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .message-text {
+            background-color: #0084ff;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 15px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .input-container {
+            padding: 20px;
+            display: flex;
+            background-color: #f5f5f5;
+        }
+
+        #userInput {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        #submitBtn {
+            background-color: #0084ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
 </body>
 </html>

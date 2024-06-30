@@ -1,12 +1,5 @@
-
-<%-- 
-    Document   : report
-    Created on : Jun 27, 2024, 10:51:55 PM
-    Author     : nanab
---%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +26,9 @@
     <main>
         <h2>Reports</h2>
         <div class="report-options">
-            <button onclick="generateSalesReport()" style="margin-left: 40px;"><i class="fas fa-chart-line"></i> Generate Sales Report</button>
-        
+            <button onclick="window.location.href='SalesReport.html'" style="margin-left: 40px;"><i class="fas fa-chart-line"></i> Generate Sales Report</button>
         </div><br>
+        
         <h3 style="margin-left: 40px;">Booking List</h3>
         <table>
             <thead>
@@ -44,52 +37,60 @@
                     <th>Traveler Name</th>
                     <th>Booking Date</th>
                     <th>Travel Date</th>
-                    <th>Report</th>
+                    <th>Package</th>
+                    <th>Traveler Contact</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>B001</td>
-                    <td>Sarah Johnson</td>
-                    <td>20-06-2024</td>
-                    <td>15-07-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B001'">Generate</button></td>
-                </tr>
-                <tr>
-                    <td>B002</td>
-                    <td>Amirul Hakim bin Mohd Zain</td>
-                    <td>05-07-2024</td>
-                    <td>05-08-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B002'">Generate</button></td>
-                </tr>
-                <tr>
-                    <td>B003</td>
-                    <td>Lee Cheng Wei</td>
-                    <td>10-07-2024</td>
-                    <td>10-09-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B003'">Generate</button></td>
-                </tr>
-                <tr>
-                    <td>B004</td>
-                    <td>Park Ji-hye</td>
-                    <td>10-07-2024</td>
-                    <td>20-10-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B004'">Generate</button></td>
-                </tr>
-                <tr>
-                    <td>B005</td>
-                    <td>Aina Sofea binti Abdul Rahman</td>
-                    <td>20-07-2024</td>
-                    <td>15-08-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B005'">Generate</button></td>
-                </tr>
-                <tr>
-                    <td>B006</td>
-                    <td>Nur Aisyah binti Ahmad</td>
-                    <td>20-07-2024</td>
-                    <td>15-08-2024</td>
-                    <td><button onclick="window.location.href='BookingReport.html?bookingId=B006'">Generate</button></td>
-                </tr>
+                <%
+                    // Database connection details
+                    String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
+                    String jdbcUsername = "app";
+                    String jdbcPassword = "app";
+                    
+                    Connection conn = null;
+                    Statement stmt = null;
+                    ResultSet rs = null;
+
+                    try {
+                        Class.forName("org.apache.derby.jdbc.ClientDriver");
+                        conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+                        stmt = conn.createStatement();
+                        String query = "SELECT B.BOOKINGID, T.USERNAME, B.BOOKINGDATE, B.TRAVELDATE, B.PACKAGEID, T.PHONENO, B.BOOKINGSTATUS " +
+                                       "FROM BOOKING B " + 
+                                       "JOIN TRAVELER T ON B.USERID = T.USERID";
+                        rs = stmt.executeQuery(query);
+
+                        while (rs.next()) {
+                            String bookingId = rs.getString("BOOKINGID");
+                            String USERNAME = rs.getString("USERNAME");
+                            String BOOKINGDATE = rs.getString("BOOKINGDATE");
+                            String TRAVELDATE = rs.getString("TRAVELDATE");
+                            String PACKAGEID = rs.getString("PACKAGEID");
+                            String PHONENO = rs.getString("PHONENO");
+                            String BOOKINGSTATUS = rs.getString("BOOKINGSTATUS");
+
+                            out.println("<tr>");
+                            out.println("<td>" + bookingId + "</td>");
+                            out.println("<td>" + USERNAME + "</td>");
+                            out.println("<td>" + BOOKINGDATE + "</td>");
+                            out.println("<td>" + TRAVELDATE + "</td>");
+                            out.println("<td>" + PACKAGEID + "</td>");
+                            out.println("<td>" + PHONENO + "</td>");
+                            out.println("<td>" + BOOKINGSTATUS + "</td>");
+                            out.println("<td><a href='BookingReport.jsp?bookingId=" + bookingId + "'><i class='fas fa-file-alt'></i> Generate Report</a></td>");
+                            out.println("</tr>");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (rs != null) try { rs.close(); } catch (SQLException ignore) {}
+                        if (stmt != null) try { stmt.close(); } catch (SQLException ignore) {}
+                        if (conn != null) try { conn.close(); } catch (SQLException ignore) {}
+                    }
+                %>
             </tbody>
         </table>
         <div class="pagination">
@@ -220,7 +221,7 @@
                             responsive: true,
                             plugins: {
                                 legend: {
-                                    position: 'top',
+                                    position: 'top'
                                 },
                                 tooltip: {
                                     callbacks: {

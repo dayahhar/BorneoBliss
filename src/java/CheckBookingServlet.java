@@ -24,9 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/CheckBookingServlet")
 public class CheckBookingServlet extends HttpServlet {
 
-    private static final String DB_URL = "jdbc:derby://localhost:1527/BorneoDB;create=true";
-    private static final String DB_USER = "app";
-    private static final String DB_PASSWORD = "app";
+    String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
+        String dbUser = "app";
+        String dbPassword = "app";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class CheckBookingServlet extends HttpServlet {
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
 
             String query = "SELECT * FROM PAYMENT";
             stmt = conn.prepareStatement(query);

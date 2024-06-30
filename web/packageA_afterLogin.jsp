@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : packageA_afterLogin
+    Created on : Jun 30, 2024, 10:24:54 AM
+    Author     : dayah
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,25 +16,34 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <a href="index.html">
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
+        <div class="booking-nav">
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
+        <%-- Check if user is logged in as admin or traveler --%>
+        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
+            <a href="viewProfile.jsp">Profile</a>
+            <a href="logout.jsp">Log Out</a>
+        </c:if>
+        <%-- Show logout option if user is logged in --%>
+        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
+            <a href="logout.jsp">Logout</a>
+        </c:if>
     </nav>
     <div class="slideshow-container">
         <div class="slides fade">
@@ -98,7 +115,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="loginUser.jsp"><button class="book-now-btn">Log In To Book!</button></a>
+            <a href="create_booking.jsp"><button class="book-now-btn">Book Now!</button></a>
             <a href="package.html"><button class="goback-btn">Go Back to Packages</button></a>
         </div>
     </div>

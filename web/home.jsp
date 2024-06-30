@@ -25,9 +25,9 @@
         <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.jsp">Packages</a>
-        <a href="aboutus.jsp">About Us</a>
-        <a href="contact.jsp">Contact</a>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
         <div class="booking-nav">
             <div class="dropdown">
                 <span class="booking">Booking</span>

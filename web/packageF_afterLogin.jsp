@@ -1,51 +1,68 @@
+<%-- 
+    Document   : packageF_afterLogin
+    Created on : Jun 30, 2024, 10:29:08 AM
+    Author     : dayah
+--%>
 <!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Package C - BORNEO BLISS TRAVEL</title>
+    <title>Package F - BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
-     <nav>
-        <a href="index.html">
+    <nav>
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
+        <div class="booking-nav">
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
+        <%-- Check if user is logged in as admin or traveler --%>
+        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
+            <a href="viewProfile.jsp">Profile</a>
+            <a href="logout.jsp">Log Out</a>
+        </c:if>
+        <%-- Show logout option if user is logged in --%>
+        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
+            <a href="logout.jsp">Logout</a>
+        </c:if>
     </nav>
     <div class="slideshow-container">
         <div class="slides fade">
-            <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Slide 1">
+            <img src="https://myrehat.com/wp-content/uploads/2023/08/18.jpeg" alt="Slide 1">
         </div>
         <div class="slides fade">
-            <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/263c1514e.jpg" alt="Slide 2">
+            <img src="https://asianitinerary.com/wp-content/uploads/2022/09/Tarzan-swing.jpg" alt="Slide 2">
         </div>
         <div class="slides fade">
-            <img src="https://www.sabahtrans.com/wp-content/uploads/2022/12/mabul-island-attractions.jpg" alt="Slide 3">
+            <img src="https://www.theborneopost.com/newsimages/2022/09/bengoh001.jpg" alt="Slide 3">
         </div>
         <div class="slides fade">
-            <img src="https://sabahtravel-assets.s3.amazonaws.com/images/20200214-ao0xm-sipadan-kapalai-lodges-jpg" alt="Slide 4">
+            <img src="https://myrehat.com/wp-content/uploads/2023/08/2.png" alt="Slide 4">
         </div>
         <div class="slides fade">
-            <img src="https://mediaim.expedia.com/localexpert/2269074/45a97dde-4587-4047-8dbf-a97863b0da40.jpg?impolicy=resizecrop&rw=1005&rh=565" alt="Slide 5">
+            <img src="https://www.theborneopost.com/newsimages/2022/09/bengoh001.jpg" alt="Slide 5">
         </div>
         <div class="slides fade">
-            <img src="https://www.mataking.com/lumonata-plugins/additional/featured/4-1601606330.jpg" alt="Slide 6">
+            <img src="https://cphtravel.com.my/wp-content/uploads/2018/09/Bengoh-eco-retreat_8.jpg" alt="Slide 6">
         </div>
         <div class="dot-container">
             <span class="dot" onclick="currentSlide(1)"></span>
@@ -58,19 +75,17 @@
     </div>
     <div class="main">
         <div class="description">
-            <h2>Package C Details - DIVE TOUR AROUND SEMPORNA</h2>
-            <p>Includes guided tour, accommodation, meals</p>
+            <h2>Package F Details - SUSUNG WATERFALL DAY TRIP</h2>
+            <p>Includes guided tour, meals</p>
             <h3>Tour Highlights</h3>
             <ul>
-                <li>Experience diving in Sipadan where green turtles, bump parrotfish, and barracudas storm await</li>
-                <li>Dive into the wonders of Mabul and Kapalai Islands, featuring diving sessions amidst rare marine creatures and vibrant coral gardens</li>
-                <li>Explore crystal-clear waters at Timba-Timba Island, encountering nurse sharks and barracudas  </li>
-                <li>Visit Mataking Island for stunning marine life and macro wonders</li>
+                <li>Immerse into the breathtaking views of Bengoh Dam during boat ride.</li>
+                <li>Trek through the lush rainforest to the refreshing Susung Waterfall.</li>
+                <li>Rejuvenate in the natural beauty of the waterfall and surrounding environment.</li>
             </ul>
-            <h4>Overview of the Diving Tour</h4>
-            <p>Set out on a remarkable 5-day journey to Semporna and immerse yourself in the captivating wonders of Sabah's underwater treasures! Savor an enthralling island-hopping adventure in the Mabul and Kapalai Islands, which are conveniently located near Semporna and are well-known for their thriving marine life.</p>
-            <p>The next day is filled with thrilling diving experiences at the picturesque Timba-Timba and Mataking Island, adding even more excitement to your Semporna underwater experience. On the fourth day, guests on the Sipadan Diver Package set off on an incredible voyage to the renowned Sipadan Island, renowned for its rich marine biodiversity, while those on the Non-Sipadan Diver Package enjoy an exclusive second exploration of Mabul and Kapalai Islands!</p>
-
+            <h4>Overview of the Susung Waterfall</h4>
+            <p>Explore the hidden gem of Bengoh Dam in Sarawak's jungle! Near the Sarawak-Kalimantan border, it features stunning sights like Susung Waterfall and Curtain Waterfall, reminiscent of "Jurassic World." Enjoy a perfect mix of sightseeing, outdoor adventure, and relaxation amidst picturesque landscapes and serene waterfalls.</p>
+            
             <table>
                 <thead>
                     <tr>
@@ -81,20 +96,16 @@
                 <tbody>
                     <tr>
                         <td>Adult</td>
-                        <td>RM2220</td>
+                        <td>RM550</td>
                     </tr>
                     <tr>
                         <td>Child</td>
-                        <td>RM2000</td>
+                        <td>RM275</td>
                     </tr>
                 </tbody>
             </table>
-            Child Policy
-            <ul>
-                <li>Child 12 years old and above subjected to Adult Rate.</li>
-                <li>Infant below 3 years old is Free of Charge.</li>
-            </ul>
-            <a href="loginUser.jsp"><button class="book-now-btn">Log In To Book!</button></a>
+            
+            <a href="create_booking.jsp"><button class="book-now-btn">Book Now!</button></a>
             <a href="package.html"><button class="goback-btn">Go Back to Packages</button></a>
         </div>
     </div>

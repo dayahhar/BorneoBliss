@@ -45,69 +45,80 @@ public class UserBookingServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
         if ("create".equals(action)) {
-            createBooking(request, response);
+            String userID = request.getParameter("userID");
+            String bookingDate = request.getParameter("bookingDate");
+            String travelDate = request.getParameter("travelDate");
+            String packageID = request.getParameter("packageID");
+            int bookingPax = Integer.parseInt(request.getParameter("bookingPax"));
+
+            try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
+                String bookingID = generateBookingID(conn);
+
+                String query = "INSERT INTO APP.BOOKING (BOOKINGID, BOOKINGDATE, TRAVELDATE, USERID, PACKAGEID, BOOKINGPAX, BOOKINGSTATUS) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setString(1, bookingID);
+                    stmt.setDate(2, Date.valueOf(bookingDate));
+                    stmt.setDate(3, Date.valueOf(travelDate));
+                    stmt.setString(4, userID);
+                    stmt.setString(5, packageID);
+                    stmt.setInt(6, bookingPax);
+                    stmt.setString(7, "Pending");
+
+                    stmt.executeUpdate();
+                }
+
+                response.sendRedirect("check_booking.jsp");
+            } catch (SQLException e) {
+                throw new ServletException("Database error while creating booking", e);
+            }
         }
-    }
-
-    private void createBooking(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-        String userID = (String) session.getAttribute("userID");
-
-        if (userID == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        Date bookingDate = Date.valueOf(request.getParameter("bookingDate"));
-        Date travelDate = Date.valueOf(request.getParameter("travelDate"));
-        String packageID = request.getParameter("package");
-        int bookingPax = Integer.parseInt(request.getParameter("bookingPax"));
-        String bookingStatus = "Pending";
-
-        try {
-            Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO BOOKING (BOOKINGDATE, TRAVELDATE, USERID, PACKAGEID, BOOKINGPAX, BOOKINGSTATUS) VALUES (?, ?, ?, ?, ?, ?)");
-            stmt.setDate(1, bookingDate);
-            stmt.setDate(2, travelDate);
-            stmt.setString(3, userID);
-            stmt.setString(4, packageID);
-            stmt.setInt(5, bookingPax);
-            stmt.setString(6, bookingStatus);
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        response.sendRedirect("UserBookingServlet");
     }
 
     private List<BOOKING> getBookingsByUserID(String userID) throws SQLException {
         List<BOOKING> bookings = new ArrayList<>();
-        Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM BOOKING WHERE USERID = ?");
-        stmt.setString(1, userID);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            bookings.add(new BOOKING(
-                rs.getString("BOOKINGID"),
-                rs.getDate("BOOKINGDATE"),
-                rs.getDate("TRAVELDATE"),
-                rs.getString("USERID"),
-                rs.getString("PACKAGEID"),
-                rs.getInt("BOOKINGPAX"),
-                rs.getString("BOOKINGSTATUS")
-            ));
+        try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
+            String query = "SELECT * FROM APP.BOOKING WHERE USERID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, userID);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        bookings.add(new BOOKING(
+                            rs.getString("BOOKINGID"),
+                            rs.getDate("BOOKINGDATE"),
+                            rs.getDate("TRAVELDATE"),
+                            rs.getString("USERID"),
+                            rs.getString("PACKAGEID"),
+                            rs.getInt("BOOKINGPAX"),
+                            rs.getString("BOOKINGSTATUS")
+                        ));
+                    }
+                }
+            }
         }
-        rs.close();
-        stmt.close();
-        conn.close();
         return bookings;
+    }
+    
+    private String generateBookingID(Connection conn) throws SQLException {
+        String bookingID = null;
+        boolean isUnique = false;
+
+        while (!isUnique) {
+            bookingID = "B" + System.currentTimeMillis();
+            String query = "SELECT COUNT(*) FROM APP.BOOKING WHERE BOOKINGID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, bookingID);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) == 0) {
+                        isUnique = true;
+                    }
+                }
+            }
+        }
+
+        return bookingID;
     }
 }

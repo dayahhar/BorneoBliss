@@ -1,5 +1,14 @@
+<%-- 
+    Document   : package_afterLogin
+    Created on : Jun 30, 2024, 10:20:17 AM
+    Author     : dayah
+--%>
 <!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +17,39 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <a href="index.html">
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
+        <div class="booking-nav">
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
+        <%-- Check if user is logged in as admin or traveler --%>
+        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
+            <a href="viewProfile.jsp">Profile</a>
+            <a href="logout.jsp">Log Out</a>
+        </c:if>
+        <%-- Show logout option if user is logged in --%>
+        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
+            <a href="logout.jsp">Logout</a>
+        </c:if>
     </nav>
+    
     <div class="packages">
         <div class="package">
-            <a href="packageA.html">
+            <a href="packageA_afterLogin.jsp">
                 <img src="https://i.pinimg.com/736x/53/7c/93/537c93b841a2411d918766dc6773dc8d.jpg" alt="Package A">
                 <div class="package-details">
                     <h3>5D4N KOTA KINABALU & KUNDASANG TOUR</h3>
@@ -39,7 +58,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageB.html">
+            <a href="packageB_afterLogin.jsp">
                 <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/kinabalu1.jpg" alt="Package B">
                 <div class="package-details">
                     <h3>2D1N MOUNT KINABALU CLIMB</h3>
@@ -48,7 +67,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageC.html">
+            <a href="packageC_afterLogin.jsp">
                 <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Package C">
                 <div class="package-details">
                     <h3>DIVE TOUR AROUND SEMPORNA</h3>
@@ -57,7 +76,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageD.html">
+            <a href="packageD_afterLogin.jsp">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Morning_fog_over_Danum_Valley_%2827329938517%29.jpg" alt="Package D">
                 <div class="package-details">
                     <h3>4D3N BORNEO RAINFOREST LODGE ADVENTURE</h3>
@@ -66,7 +85,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageE.html">
+            <a href="packageE_afterLogin.jsp">
                 <img src="https://www.semadangkayak.com/wp-content/uploads/2020/05/semadang_kayaking-32-605x605.jpg" alt="Package E">
                 <div class="package-details">
                     <h3>SEMADANG RIVER KAYAKING</h3>
@@ -75,7 +94,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageF.html">
+            <a href="packageF_afterLogin.jsp">
                 <img src="https://myrehat.com/wp-content/uploads/2023/08/18.jpeg" alt="Package F">
                 <div class="package-details">
                     <h3>SUSUNG WATERFALL DAY TRIP</h3>
@@ -84,7 +103,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageG.html">
+            <a href="packageG_afterLogin.jsp">
                 <img src="https://sarawakforestry.com/layout2/wp-content/uploads/2017/05/wind-cave-photo1.png" alt="Package G">
                 <div class="package-details">
                     <h3>KUCHING DAY TOUR - FAIRY AND WIND CAVES</h3>
@@ -93,7 +112,7 @@
             </a>
         </div>
         <div class="package">
-            <a href="packageH.html">
+            <a href="packageH_afterLogin.jsp">
                 <img src="https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2011/12/sarawak-kee-lubok-kasai-02.jpg?fit=2000%2C1500&quality=60&strip=all&ssl=1" alt="Package H">
                 <div class="package-details">
                     <h3>4D3N LUBOK KASAI JUNGLE EXPERIENCE</h3>

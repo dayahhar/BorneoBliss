@@ -1,51 +1,68 @@
+<%-- 
+    Document   : packageG_afterLogin
+    Created on : Jun 30, 2024, 10:29:20 AM
+    Author     : dayah
+--%>
 <!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Package C - BORNEO BLISS TRAVEL</title>
+    <title>Package G - BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
-     <nav>
-        <a href="index.html">
+    <nav>
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
+        <div class="booking-nav">
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
+        <%-- Check if user is logged in as admin or traveler --%>
+        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
+            <a href="viewProfile.jsp">Profile</a>
+            <a href="logout.jsp">Log Out</a>
+        </c:if>
+        <%-- Show logout option if user is logged in --%>
+        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
+            <a href="logout.jsp">Logout</a>
+        </c:if>
     </nav>
     <div class="slideshow-container">
         <div class="slides fade">
-            <img src="https://www.zubludiving.com/images/Malaysia/Sabah/Sipadan/Sipadan-Sabah-Malaysia-Diving-Drop-Off.jpg" alt="Slide 1">
+            <img src="https://sarawakforestry.com/layout2/wp-content/uploads/2017/05/wind-cave-photo1.png" alt="Slide 1">
         </div>
         <div class="slides fade">
-            <img src="https://www.malaysia.travel/webroot/articles/peekintomalaysia/263c1514e.jpg" alt="Slide 2">
+            <img src="https://i0.wp.com/twentytwo13.my/wp-content/uploads/2022/12/Bau-Bicentennial-Bridge.jpeg?fit=1024%2C768&ssl=1" alt="Slide 2">
         </div>
         <div class="slides fade">
-            <img src="https://www.sabahtrans.com/wp-content/uploads/2022/12/mabul-island-attractions.jpg" alt="Slide 3">
+            <img src="https://mediaim.expedia.com/destination/2/f7c0f606cdf40eb4bab811f284d87ae7.jpg" alt="Slide 3">
         </div>
         <div class="slides fade">
-            <img src="https://sabahtravel-assets.s3.amazonaws.com/images/20200214-ao0xm-sipadan-kapalai-lodges-jpg" alt="Slide 4">
+            <img src="https://andtheretheywent.com/wp-content/uploads/2022/09/Fairy-Cave.jpg" alt="Slide 4">
         </div>
         <div class="slides fade">
-            <img src="https://mediaim.expedia.com/localexpert/2269074/45a97dde-4587-4047-8dbf-a97863b0da40.jpg?impolicy=resizecrop&rw=1005&rh=565" alt="Slide 5">
+            <img src="https://sarawakforestry.com/layout2/wp-content/uploads/2017/05/wind-cave-photo1.png" alt="Slide 5">
         </div>
         <div class="slides fade">
-            <img src="https://www.mataking.com/lumonata-plugins/additional/featured/4-1601606330.jpg" alt="Slide 6">
+            <img src="https://sarawaktourism.com/TourismApi/images/place/439/439_slider1.jpg" alt="Slide 6">
         </div>
         <div class="dot-container">
             <span class="dot" onclick="currentSlide(1)"></span>
@@ -58,19 +75,18 @@
     </div>
     <div class="main">
         <div class="description">
-            <h2>Package C Details - DIVE TOUR AROUND SEMPORNA</h2>
+            <h2>Package G Details - KUCHING DAY TOUR - FAIRY AND WIND CAVES</h2>
             <p>Includes guided tour, accommodation, meals</p>
             <h3>Tour Highlights</h3>
             <ul>
-                <li>Experience diving in Sipadan where green turtles, bump parrotfish, and barracudas storm await</li>
-                <li>Dive into the wonders of Mabul and Kapalai Islands, featuring diving sessions amidst rare marine creatures and vibrant coral gardens</li>
-                <li>Explore crystal-clear waters at Timba-Timba Island, encountering nurse sharks and barracudas  </li>
-                <li>Visit Mataking Island for stunning marine life and macro wonders</li>
+                <li>Explore the enchanting Fairy and Wind Caves in Bau, Kuching.</li>
+                <li>Witness stunning limestone formations, stalactites, stalagmites, and lush montane vegetation in the Fairy Caves.</li>
+                <li>Discover Taoist shrines and altars with intriguing local folklore in the Fairy Caves</li>
+                <li>Experience the refreshing breeze constantly blowing through the Wind Caves</li>
             </ul>
-            <h4>Overview of the Diving Tour</h4>
-            <p>Set out on a remarkable 5-day journey to Semporna and immerse yourself in the captivating wonders of Sabah's underwater treasures! Savor an enthralling island-hopping adventure in the Mabul and Kapalai Islands, which are conveniently located near Semporna and are well-known for their thriving marine life.</p>
-            <p>The next day is filled with thrilling diving experiences at the picturesque Timba-Timba and Mataking Island, adding even more excitement to your Semporna underwater experience. On the fourth day, guests on the Sipadan Diver Package set off on an incredible voyage to the renowned Sipadan Island, renowned for its rich marine biodiversity, while those on the Non-Sipadan Diver Package enjoy an exclusive second exploration of Mabul and Kapalai Islands!</p>
-
+            <h4>Overview of the Kuching Day Tour</h4>
+            <p>This Kuching day tour offers a day of natural wonders and unforgettable experiences. Start your morning with a journey into Kuching's scenic countryside to explore the enchanting Fairy and Wind Caves. At Fairy Caves, admire mesmerizing limestone formations, lush vegetation, and Taoist shrines. Then, visit the Wind Caves, where a constant cool breeze enhances the mystique.</p>
+            <h5>ALL MARKET</h5>
             <table>
                 <thead>
                     <tr>
@@ -81,20 +97,16 @@
                 <tbody>
                     <tr>
                         <td>Adult</td>
-                        <td>RM2220</td>
+                        <td>RM220</td>
                     </tr>
                     <tr>
                         <td>Child</td>
-                        <td>RM2000</td>
+                        <td>RM110</td>
                     </tr>
                 </tbody>
             </table>
-            Child Policy
-            <ul>
-                <li>Child 12 years old and above subjected to Adult Rate.</li>
-                <li>Infant below 3 years old is Free of Charge.</li>
-            </ul>
-            <a href="loginUser.jsp"><button class="book-now-btn">Log In To Book!</button></a>
+            
+            <a href="create_booking.jsp"><button class="book-now-btn">Book Now!</button></a>
             <a href="package.html"><button class="goback-btn">Go Back to Packages</button></a>
         </div>
     </div>

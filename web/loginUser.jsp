@@ -24,16 +24,7 @@
             <a href="package.html">Packages</a>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact</a>
-            <div class="booking-nav">
-                    <div class="dropdown">
-                        <span class="booking">Booking</span>
-                        <div class="dropdown-content">
-                            <a href="create_booking.jsp">Book Now</a>
-                            <a href="check_booking.jsp">Check Booking</a>
-                        </div>
-                    </div>
-            </div>
-            <a href="viewProfile.jsp">Profile</a>
+            
             <div class="login-nav">
                     <div class="dropdown">
                         <span class="login">Log In</span>

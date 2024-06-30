@@ -43,7 +43,7 @@
     <nav>
         <a href="admin.html" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
         <a href="packageManage.html">Packages</a>
-        <a href="bookingApprove.html">Booking</a>
+        <a href="view_bookings.jsp">Booking</a>
         <a href="userProfile.html">Profile</a>
         <a href="report.html">Report</a>
         <a href="logout.html">Logout</a>

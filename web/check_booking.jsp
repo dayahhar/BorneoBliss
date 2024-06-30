@@ -1,18 +1,14 @@
-<%@ page import="java.util.List" %>
-<%@ page import="booking.BOOKING" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Booking - Borneo Bliss Travel</title>
+    <title>Check Booking - Borneo Bliss Travel</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.travelerUsername}!</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
@@ -35,11 +31,7 @@
         <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
-        <h2>Check Your Booking</h2>
-        <%
-            List<BOOKING> bookings = (List<BOOKING>) request.getAttribute("bookings");
-            if (bookings != null && !bookings.isEmpty()) {
-        %>
+        <h2>Your Bookings</h2>
         <table border="1">
             <thead>
                 <tr>
@@ -48,42 +40,25 @@
                     <th>Travel Date</th>
                     <th>Package ID</th>
                     <th>Number of Pax</th>
-                    <th>Booking Status</th>
-                    <th>Actions</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <%
-                    for (BOOKING booking : bookings) {
-                %>
-                <tr>
-                    <td><%= booking.getBookingID() %></td>
-                    <td><%= booking.getBookingDate() %></td>
-                    <td><%= booking.getTravelDate() %></td>
-                    <td><%= booking.getPackageID() %></td>
-                    <td><%= booking.getBookingPax() %></td>
-                    <td><%= booking.getBookingStatus() %></td>
-                    <td>
-                        <% if ("Approved".equals(booking.getBookingStatus())) { %>
-                            <form action="payment.jsp" method="post">
-                                <input type="hidden" name="bookingID" value="<%= booking.getBookingID() %>">
-                                <button type="submit" class="payment-button">Pay Now</button>
-                            </form>
-                        <% } %>
-                    </td>
-                </tr>
-                <%
-                    }
-                %>
+                <c:forEach var="booking" items="${bookings}">
+                    <tr>
+                        <td>${booking.bookingID}</td>
+                        <td>${booking.bookingDate}</td>
+                        <td>${booking.travelDate}</td>
+                        <td>${booking.packageID}</td>
+                        <td>${booking.bookingPax}</td>
+                        <td>${booking.bookingStatus}</td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
-        <%
-            } else {
-        %>
-        <p>No booking is made by the user.</p>
-        <%
-            }
-        %>
+        <c:if test="${empty bookings}">
+            <p>No bookings found.</p>
+        </c:if>
     </div>
     <footer>
         <div class="contact-info">

@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page import="booking.BOOKING" %>
+<%@ page import="packages.PACKAGE" %>
 <%@ page import="booking.UserBookingServlet" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>
@@ -20,12 +21,12 @@
     password="app" />
 
 <%
-    if (session == null || session.getAttribute("userID") == null) {
+    if (session == null || session.getAttribute("username") == null) {
         response.sendRedirect("loginUser.jsp");
         return;
     }
 %>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +36,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.travelerUsername}!</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
@@ -62,8 +63,8 @@
         <form action="UserBookingServlet" method="post">
             <input type="hidden" name="action" value="create">
             
-            <label for="userID">User ID:</label>
-            <input type="text" id="userID" name="userID" value="${sessionScope.userID}" readonly required><br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="${sessionScope.username}" readonly required><br>
             
             <label for="bookingDate">Booking Date:</label>
             <input type="date" id="bookingDate" name="bookingDate" required><br>
@@ -73,28 +74,25 @@
 
             <label for="packageID">Package:</label>
             <select id="packageID" name="packageID" required>
-                <option value="P01A">5D4N KOTA KINABALU & KUNDASANG TOUR (ADULT)</option>
-                <option value="P01C">5D4N KOTA KINABALU & KUNDASANG TOUR (CHILD)</option>
-                <option value="P02">2D1N MOUNT KINABALU CLIMB (ADULT ONLY)</option>
-                <option value="P03A">SIPADAN ISLAND: SIPADAN DIVE TOUR (ADULT)</option>
-                <option value="P03C">SIPADAN ISLAND: SIPADAN DIVE TOUR (CHILD)</option>
-                <option value="P04A">4D3N BORNEO RAINFOREST LODGE ADVENTURE (ADULT)</option>
-                <option value="P04C">4D3N BORNEO RAINFOREST LODGE ADVENTURE (CHILD)</option>
-                <option value="P05A">SEMADANG RIVER KAYAKING (ADULT)</option>
-                <option value="P05C">SEMADANG RIVER KAYAKING (CHILD)</option>
-                <option value="P06A">SUSUNG WATERFALL DAY TRIP (ADULT)</option>
-                <option value="P06C">SUSUNG WATERFALL DAY TRIP (CHILD)</option>
-                <option value="P07A">GUA IN KUCHING DAY TOUR (ADULT)</option>
-                <option value="P07C">GUA IN KUCHING DAY TOUR (CHILD)</option>
-                <option value="P08A">4D3N LUBOK KASAI JUNGLE EXPERIENCE (ADULT)</option>
-                <option value="P08C">4D3N LUBOK KASAI JUNGLE EXPERIENCE (CHILD)</option>
-            </select>
+                <sql:query dataSource="${myDatasource}" var="packageList">
+                    SELECT PACKAGEID, PACKAGENAME FROM APP.PACKAGE
+                </sql:query>
+                <c:forEach var="package" items="${packageList.rows}">
+                    <option value="${package.PACKAGEID}">${package.PACKAGENAME}</option>
+                </c:forEach>
+            </select><br>
 
             <label for="bookingPax">Number of Pax:</label>
             <input type="number" id="bookingPax" name="bookingPax" required><br><br>
 
             <input type="submit" value="Create Booking">
         </form>
+        <c:if test="${not empty message}">
+            <p style="color:green;">${message}</p>
+        </c:if>
+        <c:if test="${not empty error}">
+            <p style="color:red;">${error}</p>
+        </c:if>
     </div>
     <footer>
         <div class="contact-info">
@@ -105,4 +103,3 @@
     </footer>
 </body>
 </html>
-

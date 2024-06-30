@@ -1,436 +1,494 @@
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-        header {
-            background-image: url('https://images.unsplash.com/photo-1557115580-d2437a3a6449?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay with opacity */
-            z-index: -1;
-        }
+header {
+    background-image: url('https://images.unsplash.com/photo-1557115580-d2437a3a6449?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with opacity */
+    z-index: -1;
+}
 
-        nav img {
-            max-height: 50px;
-            margin-right: 20px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            width: 100px;
-            height: 50px;
-            line-height: 50px;
-            background: #333;
-        }
+header p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+}
 
-        nav a:hover {
-            background-color: #555; /* Change the background color on hover */
-        }
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 0.5rem 0;
+}
 
-        .main {
-            max-width: 500px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+nav img {
+    max-height: 50px;
+    margin-right: 20px;
+}
 
-        .main h2 {
-            text-align: center;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    background: #333;
+    transition: background-color 0.3s;
+}
 
-        .slideshow-container {
-            position: relative;
-            max-width: 300px;
-            margin: auto;
-        }
-        .slides {
-            display: none;
-            width: 300px;
-            height: 200px;
-        }
-        .slides img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-        }
-        h2 {
-            margin-top: 20px;
-        }
+nav a:hover {
+    background-color: #555; /* Change the background color on hover */
+}
 
-        form {
-            margin-top: 20px;
-        }
+.main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+.main h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        input[type="text"],
-        input[type="password"],
-        input[type="date"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+body.home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-        input[type="submit"] {
-            background-color: #2359B2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-        }
+.main.home {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        input[type="submit"]:hover {
-            background-color: #003366;
-        }
+.description.home {
+    flex: 1;
+    padding: 20px;
+}
 
-        .status {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-        }
+.description {
+    flex: 1;
+    padding: 20px;
+}
 
-        .status h3 {
-            margin-top: 0;
-        }
+.slideshow-container {
+    position: relative;
+    max-width: 300px;
+    margin: auto;
+}
 
-        .payment-button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
+.slides {
+    display: none;
+    width: 100%;
+    height: 200px;
+}
 
-        .payment-button:hover {
-            background-color: #218838;
-        }
+.slides img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px 0; /* Adjust padding */
-            width: 100%;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-        }
+form {
+    margin-top: 20px;
+}
 
-        footer p {
-            margin: 0;
-        }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        footer .contact-info {
-            font-size: 0.9em;
-        }
+.status {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
 
-        .booking-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #333;
-        }
-        
-        .booking {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            width: 100px;
-            height: 50px;
-            line-height: 50px;
-            background: #333;
-        }
+.status h3 {
+    margin-top: 0;
+}
 
-        .booking-nav .booking {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            width: 100px;
-            height: 50px;
-            line-height: 50px;
-            background: #333;
-            cursor: pointer;
-        }
+.payment-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
 
-        .booking-nav .booking:hover {
-            background-color: #555; /* Change the background color on hover */
-        }
+.payment-button:hover {
+    background-color: #218838;
+}
 
-        .dropdown {
-            position: relative;
-        }
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333; /* Change background color */
-            min-width: 160px;
-            z-index: 1;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+footer p {
+    margin: 0;
+}
 
-        .dropdown-content a {
-            color: white;
-            width: 100%;
-            height: 50px;
-            line-height: 50px;
-            text-decoration: none;
-            display: block;
-            padding: 10px; /* Add padding */
-            text-align: center;
-            background-color: #333;
-        }
+footer .contact-info {
+    font-size: 0.9em;
+}
 
-        .dropdown-content a:hover {
-            background-color: #555; /* Change hover background color */
-        }
+.booking-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-        .description {
-            flex: 1;
-            padding-left: 20px;
-        }
+.booking {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    background: #333;
+    cursor: pointer;
+}
 
-        .goback-btn {
-            background-color: #B27723;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
+.booking-nav .booking:hover {
+    background-color: #555; /* Change the background color on hover */
+}
 
-        .goback-btn:hover {
-            background-color: #8a5821;
-        }
+.dropdown {
+    position: relative;
+}
 
-        .book-now-btn {
-            background-color: #2359B2;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        .book-now-btn:hover {
-            background-color: #003366;
-        }
-        .update-profile-btn {
-            background-color: #2359B2;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
+.dropdown-content a {
+    color: white;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    background-color: #333;
+}
 
-        .update-profile-btn:hover {
-            background-color: #003366;
-        }
-        
-        ul {
-            text-align: left;
-            margin-left: 20px;
-        }
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 80%;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .dot-container {
-            text-align: center;
-            padding: 20px;
-            background: #ddd;
-        }
-        .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 10%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-        .description {
-            flex: 1;
-            padding-left: 20px;
-        }
-        .packages {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-        .package {
-            position: relative;
-            width: 300px;
-            height: 400px;
-            margin: 15px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .package img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px 5px 0 0;
-        }
-        .package:hover {
-            transform: translateY(-10px);
-        }
-        .package h3 {
-            margin: 10px 0;
-        }
-        .package p {
-            margin: 10px 0;
-            color: #555;
-        }
-        .package a {
-            text-decoration: none;
-            color: black;
-        }
-        .package-details {
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .login {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            width: 100px;
-            height: 50px;
-            line-height: 50px;
-            background: #333;
-        }
-        .login-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #333;
-        }
-        .login-nav .login {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            width: 100px;
-            height: 50px;
-            line-height: 50px;
-            background: #333;
-            cursor: pointer;
-        }
-        .login-nav .login:hover {
-            background-color: #555; /* Change the background color on hover */
-        }
-        
+.dropdown-content a:hover {
+    background-color: #555; /* Change hover background color */
+}
 
-        .chatbot-button-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
-        .chatbot-button-container img {
-            width: 60px;
-            height: 60px;
-            border-radius: 60%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
+.active, .dot:hover {
+    background-color: #717171;
+}
 
-        .chatbot-button-container img:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        
+.goback-btn,
+.book-now-btn,
+.update-profile-btn {
+    background-color: #2359B2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.goback-btn:hover,
+.book-now-btn:hover,
+.update-profile-btn:hover {
+    background-color: #003366;
+}
+
+ul {
+    text-align: left;
+    margin-left: 20px;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.dot-container {
+    text-align: center;
+    padding: 20px;
+    background: #ddd;
+}
+
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot:hover, .dot.active {
+    background-color: #717171;
+}
+
+.packages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.package {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.package img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+}
+
+.package:hover {
+    transform: translateY(-10px);
+}
+
+.package h3 {
+    margin: 10px 0;
+}
+
+.package p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.package a {
+    text-decoration: none;
+    color: black;
+}
+
+.package-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.chatbot-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chatbot-button-container img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.chatbot-button-container img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+        border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.item {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    nav a {
+        width: auto;
+        padding: 10px;
+    }
+
+    .main {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .package {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .main {
+        padding: 5px;
+    }
+
+    .packages {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .package {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
+
+.login-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
+
+.login {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    background: #333;
+    cursor: pointer;
+}
+
+.login-nav .login:hover {
+    background-color: #555; /* Change the background color on hover */
+}

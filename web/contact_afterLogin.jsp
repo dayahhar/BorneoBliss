@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - BORNEO BLISS TRAVEL</title>
+    <title>Contact- BORNEO BLISS TRAVEL</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
@@ -30,15 +30,8 @@
                 </div>
             </div>
         </div>
-        <%-- Check if user is logged in as admin or traveler --%>
-        <c:if test="${empty sessionScope.adminUsername and empty sessionScope.travelerUsername}">
-            <a href="viewProfile.jsp">Profile</a>
-            <a href="logout.jsp">Log Out</a>
-        </c:if>
-        <%-- Show logout option if user is logged in --%>
-        <c:if test="${not empty sessionScope.adminUsername or not empty sessionScope.travelerUsername}">
-            <a href="logout.jsp">Logout</a>
-        </c:if>
+        <a href="viewProfile.jsp">Profile</a>
+        <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
         <div class="contact-info">

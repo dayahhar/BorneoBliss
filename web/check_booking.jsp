@@ -32,30 +32,34 @@
     </nav>
     <div class="main">
         <h2>Your Bookings</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Booking Date</th>
-                    <th>Travel Date</th>
-                    <th>Package ID</th>
-                    <th>Number of Pax</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="booking" items="${bookings}">
+        <c:if test="${not empty bookings}"> 
+            <table border="1">
+                <thead>
                     <tr>
-                        <td>${booking.bookingID}</td>
-                        <td>${booking.bookingDate}</td>
-                        <td>${booking.travelDate}</td>
-                        <td>${booking.packageID}</td>
-                        <td>${booking.bookingPax}</td>
-                        <td>${booking.bookingStatus}</td>
+                        <th>Booking ID</th>
+                        <th>Booking Date</th>
+                        <th>Travel Date</th>
+                        <th>User ID</th>
+                        <th>Package ID</th>
+                        <th>Number of Pax</th>
+                        <th>Status</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <c:forEach var="bookings" items="${bookings}">
+                        <tr>
+                            <td>${booking.bookingID}</td>
+                            <td>${booking.bookingDate}</td>
+                            <td>${booking.travelDate}</td>
+                            <td>${booking.packageID}</td>
+                            <td>${booking.userID}</td>
+                            <td>${booking.bookingPax}</td>
+                            <td>${booking.bookingStatus}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
         <c:if test="${empty bookings}">
             <p>No bookings found.</p>
         </c:if>

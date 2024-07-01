@@ -5,6 +5,11 @@
  */
 package payment;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author dayah
@@ -15,23 +20,24 @@ public class PAYMENT {
     private String cardNumber;
     private String expiryDate;
     private int cvv;
+    private String bookingID;
     private String userID;
     private String paymentStatus;
 
     public PAYMENT() {
     }
 
-    public PAYMENT(String paymentID, double amount, String cardNumber, String expiryDate, int cvv, String userID, String paymentStatus) {
+    public PAYMENT(String paymentID, double amount, String cardNumber, String expiryDate, int cvv, String bookingID, String userID, String paymentStatus) {
         this.paymentID = paymentID;
         this.amount = amount;
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
+        this.bookingID = bookingID;
         this.userID = userID;
         this.paymentStatus = paymentStatus;
     }
 
-    
     public String getPaymentID() {
         return paymentID;
     }
@@ -72,6 +78,14 @@ public class PAYMENT {
         this.cvv = cvv;
     }
 
+    public String getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(String bookingID) {
+        this.bookingID = bookingID;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -87,6 +101,37 @@ public class PAYMENT {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
-
     
+    public String getUserID(String username) {
+        String userID = null;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BorneoDB", "app", "app");
+
+            String query = "SELECT USERID FROM APP.TRAVELER WHERE USERNAME = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                userID = rs.getString("USERID");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userID;
+    }
 }

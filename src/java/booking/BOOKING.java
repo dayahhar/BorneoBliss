@@ -93,7 +93,7 @@ public class BOOKING {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BorneoDB", "app", "app");
 
-            String query = "SELECT USERID FROM APP.USERS WHERE USERNAME = ?";
+            String query = "SELECT USERID FROM APP.TRAVELER WHERE USERNAME = ?";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
 

@@ -1,26 +1,15 @@
 <%-- 
-    Document   : payment
-    Created on : Jun 23, 2024, 2:25:49 AM
+    Document   : payment_error
+    Created on : Jul 1, 2024, 10:07:10 AM
     Author     : dayah
 --%>
-
-<%@ page import="java.util.*" %>
-<%@ page import="javax.servlet.http.*" %>
-<%@ page import="javax.servlet.*" %>
-
-<%
-    if (session == null || session.getAttribute("username") == null) {
-        response.sendRedirect("loginUser.jsp");
-        return;
-    }
-%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Borneo Bliss Travel</title>
+    <title>Payment Success - Borneo Bliss Travel</title>
     <link rel="stylesheet" href="styleUser.css">
 </head>
 <body>
@@ -48,25 +37,11 @@
         <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
-        <h2>Make Your Payment</h2>
-        <form action="UserPaymentServlet" method="post">
-            <label for="bookingID">Booking ID:</label>
-            <input type="text" id="bookingID" name="bookingID" value="${bookingID}" readonly><br>
-            
-            <label for="totalAmount">Total Amount:</label>
-            <input type="text" id="totalAmount" name="totalAmount" value="${totalAmount}" readonly><br>
-
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" required><br>
-            
-            <label for="expiryDate">Expiry Date (MM/YY):</label>
-            <input type="text" id="expiryDate" name="expiryDate" required><br>
-            
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required><br>
-            
-            <button type="submit">Submit Payment</button>
-        </form>
+        <h2>Error Details</h2>
+        <p>${error}</p>
+        <p>Please try again or contact support if the problem persists.</p>
+        
+        <a href="home.jsp">Back to Homepage</a>
     </div>
     <footer>
         <div class="contact-info">

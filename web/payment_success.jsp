@@ -14,32 +14,35 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <a href="index.html">
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
         <div class="booking-nav">
-                <div class="dropdown">
-                    <span class="booking">Booking</span>
-                    <div class="dropdown-content">
-                        <a href="create_booking.jsp">Book Now</a>
-                        <a href="check_booking.jsp">Check Booking</a>
-                    </div>
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
-        <a href="ViewProfile.jsp">Profile</a>
-        <a href="login.jsp">Log In</a>
+        <a href="viewProfile.jsp">Profile</a>
+        <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
-        <h2>Payment Successful</h2>
-    <p>Your payment has been processed successfully.</p>
-    <a href="profile.jsp">Go to Profile</a>
+        <h2>Payment Details</h2>
+        <p>Booking ID: ${bookingID}</p>
+        <p>Total Amount: ${totalAmount}</p>
+        <p>Thank you for your payment!</p>
+        
+        <a href="home.jsp">Back to Homepage</a>
     </div>
     <footer>
         <div class="contact-info">

@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -119,5 +121,33 @@ public class TRAVELER {
             }
         }
         return name;
+    }
+    
+    public static List<TRAVELER> getAllUsers() {
+        List<TRAVELER> userList = new ArrayList<>();
+        String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
+        String jdbcUsername = "app";
+        String jdbcPassword = "app";
+
+        try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM APP.TRAVELER");
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                TRAVELER traveler = new TRAVELER(
+                        rs.getString("userID"),
+                        rs.getString("username"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phoneNo"),
+                        rs.getString("userPassword")
+                );
+                userList.add(traveler);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving users: " + e.getMessage());
+        }
+        return userList;
     }
 }

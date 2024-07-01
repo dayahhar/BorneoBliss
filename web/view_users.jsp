@@ -1,9 +1,3 @@
-<%-- 
-    Document   : view_users
-    Created on : Jun 25, 2024, 11:48:34 PM
-    Author     : Aqilah05
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="traveler.TRAVELER" %>
@@ -45,7 +39,7 @@
             </thead>
             <tbody>
                 <%
-                    List<TRAVELER> userList = (List<TRAVELER>) request.getAttribute("userList");
+                    List<TRAVELER> userList = TRAVELER.getAllUsers();
                     if (userList == null || userList.isEmpty()) {
                 %>
                 <tr>
@@ -61,12 +55,12 @@
                     <td><%= user.getName() %></td>
                     <td><%= user.getEmail() %></td>
                     <td><%= user.getPhoneNo() %></td>
-                    <td><%= user.getUserPassword() %></td>
+                    <td><%= user.getUserpassword() %></td>
                     <td>
                         <form action="ManageUsersServlet" method="POST">
                             <input type="hidden" name="userId" value="<%= user.getUserID() %>" />
                             <input type="hidden" name="action" value="delete" />
-                            <input type="submit" value="Delete" />
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                         </form>
                     </td>
                 </tr>

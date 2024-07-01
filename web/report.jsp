@@ -15,11 +15,11 @@
         <h1>Admin Page</h1>
         <p>Borneo Bliss Management System</p>
     </header>
-    <nav>   
-        <a href="admin.jsp"><img src="imagesAdmin/logo.png" alt="Home" style="max-width: 50px; max-height: 50px;"></a>
-        <a href="packageManage.jsp">Packages</a>
-        <a href="bookingApprove.jsp">Booking</a>
-        <a href="userProfile.jsp">Profile</a>
+    <nav>
+        <a href="admin.jsp" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
+        <a href="packageManage.html">Packages</a>
+        <a href="view_bookings.jsp">Booking</a>
+        <a href="viewProfile.jsp">Profile</a>
         <a href="report.jsp">Report</a>
         <a href="logout.jsp">Logout</a>
     </nav>

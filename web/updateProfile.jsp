@@ -19,35 +19,27 @@
 </head>
     <body>
         <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <a href="index.html">
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
         <div class="booking-nav">
-                <div class="dropdown">
-                    <span class="booking">Booking</span>
-                    <div class="dropdown-content">
-                        <a href="create_booking.jsp">Book Now</a>
-                        <a href="check_booking.jsp">Check Booking</a>
-                    </div>
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
-                </div>
-        </div>
+        <a href="logout.jsp">Log Out</a>
     </nav>
         
         <div class="main">
@@ -55,19 +47,19 @@
         <form action="updateProfile.jsp" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="${traveler.username}" >
+                <input type="text" id="username" name="username" value="${sessionScope.username}" >
             </div>
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="${traveler.name}" >
+                <input type="text" id="name" name="name" value="${sessionScope.name}" >
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="${traveler.email}" >
+                <input type="email" id="email" name="email" value="${sessionScope.email}" >
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" value="${traveler.phone}" >
+                <label for="phoneNo">Phone Number:</label>
+                <input type="tel" id="phone" name="phoneNo" value="${sessionScope.phoneNo}" >
             </div>
             <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>       
         </form>

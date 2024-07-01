@@ -31,8 +31,8 @@ public class ProfileServlet extends HttpServlet {
         String userId = request.getParameter("userID");
         TRAVELER user = getUserDetails(userId);
 
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("restricted/updateProfile.jsp").forward(request, response);
+        request.setAttribute("traveler", user); // Set attribute name to "traveler"
+        request.getRequestDispatcher("restricted/viewProfile.jsp").forward(request, response);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ProfileServlet extends HttpServlet {
         }
 
         // Connect to the database and execute the query
-        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbUserpassword );
+        try (Connection connection = DriverManager.getConnection(dbURL, dbUser, dbUserpassword);
         //try (Connection connection = ProfileServlet.getConnection(dbURL, dbUser, dbUserpassword );     
         PreparedStatement statement = connection.prepareStatement(sql)) {
 

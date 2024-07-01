@@ -40,10 +40,16 @@ public class LoginUserServlet extends HttpServlet {
 
         if (isAuthenticated) {
             String name = new TRAVELER().getName(username);
+            String email = new TRAVELER().getEmail(username);
+            String phoneNo = new TRAVELER().getPhoneNo(username);
             // Create a session and store user details
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("name", name);
+            session.setAttribute("email", email);
+            session.setAttribute("phoneNo", phoneNo);
+
+            
             
             response.sendRedirect(request.getContextPath() + "/home.jsp"); 
         } else {

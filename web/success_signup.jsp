@@ -21,7 +21,7 @@
     <div class="message">
         <h1 align="center">Sign Up Successful!</h1>
         <p align="center">Thank you for signing up for Borneo Bliss Travel.</p>
-        <p align="center"><a href="loginUser.jsp">Click here to log in</a></p>
+        <p align="center"><a href="home.jsp">Click here to log in</a></p>
     </div>
     <footer>
         <div class="contact-info">

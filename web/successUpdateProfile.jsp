@@ -16,39 +16,32 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
-        <a href="index.html">
+        <a href="home.jsp">
             <img src="image/logo.png" alt="Borneo Bliss Logo">
         </a>
-        <a href="package.html">Packages</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="package_afterLogin.jsp">Packages</a>
+        <a href="aboutus_afterLogin.jsp">About Us</a>
+        <a href="contact_afterLogin.jsp">Contact</a>
         <div class="booking-nav">
-                <div class="dropdown">
-                    <span class="booking">Booking</span>
-                    <div class="dropdown-content">
-                        <a href="create_booking.jsp">Book Now</a>
-                        <a href="check_booking.jsp">Check Booking</a>
-                    </div>
+            <div class="dropdown">
+                <span class="booking">Booking</span>
+                <div class="dropdown-content">
+                    <a href="create_booking.jsp">Book Now</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
+            </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <div class="login-nav">
-                <div class="dropdown">
-                    <span class="login">Log In</span>
-                    <div class="dropdown-content">
-                        <a href="loginAdmin.jsp">Log In Admin</a>
-                        <a href="loginUser.jsp">Log In Traveler</a>
-                    </div>
-                </div>
-        </div>
+        <a href="logout.jsp">Log Out</a>
     </nav>
+        
     <div class="message">
         <h1 align="center">Profile Updated Successfully!</h1>
-        <a href="index.html"><button class="goback-btn">Go Back to Home Page</button></a>
+        <a href="home.jsp"><button class="goback-btn">Go Back to Home Page</button></a>
     </div>
     <footer>
         <div class="contact-info">

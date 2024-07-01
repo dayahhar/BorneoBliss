@@ -96,6 +96,7 @@ public class TRAVELER {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
+        
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -122,7 +123,70 @@ public class TRAVELER {
         }
         return name;
     }
-    
+    public String getEmail(String username) {
+        String email = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BorneoDB", "app", "app");
+
+            stm = conn.prepareStatement("SELECT EMAIL FROM TRAVELER WHERE USERNAME = ?");
+            stm.setString(1, username);
+
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                email = rs.getString("EMAIL");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return email;
+    }
+    public String getPhoneNo(String username) {
+        String phoneNo = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BorneoDB", "app", "app");
+
+            stm = conn.prepareStatement("SELECT PHONENO FROM TRAVELER WHERE USERNAME = ?");
+            stm.setString(1, username);
+
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                phoneNo = rs.getString("PHONENO");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stm != null) stm.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return phoneNo;
+    }
     public static List<TRAVELER> getAllUsers() {
         List<TRAVELER> userList = new ArrayList<>();
         String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
@@ -150,4 +214,24 @@ public class TRAVELER {
         }
         return userList;
     }
-}
+    public static TRAVELER getTravelerByID(String userID, Connection conn) throws Exception {
+        TRAVELER traveler = null;
+        String sql = "SELECT userID, username, name, email, phoneNo, userPassword FROM TRAVELER WHERE userID = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    traveler = new TRAVELER();
+                    traveler.setUserID(rs.getString("userID"));
+                    traveler.setUsername(rs.getString("username"));
+                    traveler.setName(rs.getString("name"));
+                    traveler.setEmail(rs.getString("email"));
+                    traveler.setPhoneNo(rs.getString("phoneNo"));
+                    traveler.setUserPassword(rs.getString("userPassword"));
+                }
+            }
+        }
+        return traveler;
+    
+}}

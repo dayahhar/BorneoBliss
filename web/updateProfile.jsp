@@ -44,7 +44,8 @@
         
         <div class="main">
         <h2>Update Profile</h2>
-        <form action="updateProfile.jsp" method="post">
+        <form action="ProfileServlet" method="post">
+            <input type="hidden" name="action" value="update">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="${sessionScope.username}" >
@@ -55,11 +56,11 @@
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="${sessionScope.email}" >
+                <input type="text" id="email" name="email" value="${sessionScope.email}" >
             </div>
             <div class="form-group">
                 <label for="phoneNo">Phone Number:</label>
-                <input type="tel" id="phone" name="phoneNo" value="${sessionScope.phoneNo}" >
+                <input type="text" id="phone" name="phoneNo" value="${sessionScope.phoneNo}" >
             </div>
             <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>       
         </form>

@@ -35,6 +35,10 @@ public class UserBookingServlet extends HttpServlet {
         List<BOOKING> bookings = new ArrayList<>();
         try {
             bookings = getBookingsByUsername(username);
+            System.out.println("Number of bookings retrieved: " + bookings.size());
+            for (BOOKING booking : bookings) {
+                System.out.println(booking.getBookingID());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Failed to retrieve bookings: " + e.getMessage());
@@ -43,6 +47,7 @@ public class UserBookingServlet extends HttpServlet {
         request.setAttribute("bookings", bookings);
         request.getRequestDispatcher("check_booking.jsp").forward(request, response);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

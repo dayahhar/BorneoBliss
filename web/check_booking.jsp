@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="bookings" items="${bookings}">
+                    <c:forEach var="booking" items="${bookings}">
                         <tr>
                             <td>${booking.bookingID}</td>
                             <td>${booking.bookingDate}</td>

@@ -32,7 +32,7 @@
     </nav>
     <div class="main">
         <h2>Your Bookings</h2>
-        <c:if test="${not empty bookings}"> 
+        <c:if test="${not empty bookings}">
             <table border="1">
                 <thead>
                     <tr>
@@ -51,8 +51,8 @@
                             <td>${booking.bookingID}</td>
                             <td>${booking.bookingDate}</td>
                             <td>${booking.travelDate}</td>
-                            <td>${booking.packageID}</td>
                             <td>${booking.userID}</td>
+                            <td>${booking.packageID}</td>
                             <td>${booking.bookingPax}</td>
                             <td>${booking.bookingStatus}</td>
                         </tr>

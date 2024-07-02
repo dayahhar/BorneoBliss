@@ -61,7 +61,7 @@
     </nav>
     <div class="main">
         <h2>Book Your Adventure</h2>
-        <form action="UserBookingServlet" method="post">
+        <form action="CreateBookingUserServlet" method="post">
             <input type="hidden" name="action" value="create">
             
             <label for="username">Username:</label>

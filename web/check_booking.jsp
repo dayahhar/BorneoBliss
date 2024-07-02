@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ page import="booking.BOOKING" %>
-<%@ page import="packages.PACKAGE" %>
 <%@ page import="java.util.*" %>
-<%@ page import="javax.servlet.http.*" %>
-<%@ page import="javax.servlet.*" %>
 
 <sql:setDataSource var="myDatasource"
     driver="org.apache.derby.jdbc.ClientDriver"
@@ -19,6 +15,7 @@
         return;
     }
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +26,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.username}!</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
@@ -44,7 +41,7 @@
                 <span class="booking">Booking</span>
                 <div class="dropdown-content">
                     <a href="create_booking.jsp">Book Now</a>
-                    <a href="UserCheckBookingServlet">Check Booking</a>
+                    <a href="check_booking.jsp">Check Booking</a>
                 </div>
             </div>
         </div>
@@ -53,7 +50,16 @@
     </nav>
     <div class="main">
         <h2>Your Bookings</h2>
-        <c:if test="${not empty bookings}">
+        
+        <sql:query dataSource="${myDatasource}" var="result">
+            SELECT B.* 
+            FROM BOOKING B 
+            JOIN TRAVELER T ON B.USERID = T.USERID 
+            WHERE T.USERNAME = ?
+            <sql:param value="${sessionScope.username}" />
+        </sql:query>
+        
+        <c:if test="${not empty result.rows}">
             <table border="1">
                 <thead>
                     <tr>
@@ -67,7 +73,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="booking" items="${bookings}">
+                    <c:forEach var="booking" items="${result.rows}">
                         <tr>
                             <td><c:out value="${booking.BOOKINGID}"/></td>
                             <td><c:out value="${booking.BOOKINGDATE}"/></td>
@@ -81,7 +87,7 @@
                 </tbody>
             </table>
         </c:if>
-        <c:if test="${empty bookings}">
+        <c:if test="${empty result.rows}">
             <p>No bookings found.</p>
         </c:if>
     </div>
@@ -94,3 +100,4 @@
     </footer>
 </body>
 </html>
+

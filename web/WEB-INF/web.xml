@@ -2,10 +2,6 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <!-- Other servlet definitions -->
     <servlet>
-        <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>PaymentServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManageUsersServlet</servlet-name>
         <servlet-class>ManageUsersServlet</servlet-class>
     </servlet>
@@ -57,20 +53,11 @@
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>ProfileServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>UserBookingServlet</servlet-name>
-        <servlet-class>booking.UserBookingServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserCheckBookingServlet</servlet-name>
-        <servlet-class>UserCheckBookingServlet</servlet-class>
-    </servlet>
-    
     <!-- Servlet mappings -->
-    <servlet-mapping>
-        <servlet-name>PaymentServlet</servlet-name>
-        <url-pattern>/PaymentServlet</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>CreateBookingUserServlet</servlet-name>
+        <servlet-class>booking.CreateBookingUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManageUsersServlet</servlet-name>
         <url-pattern>/ManageUsersServlet</url-pattern>
@@ -124,12 +111,8 @@
         <url-pattern>/ProfileServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserBookingServlet</servlet-name>
-        <url-pattern>/UserBookingServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserCheckBookingServlet</servlet-name>
-        <url-pattern>/UserCheckBookingServlet</url-pattern>
+        <servlet-name>CreateBookingUserServlet</servlet-name>
+        <url-pattern>/CreateBookingUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

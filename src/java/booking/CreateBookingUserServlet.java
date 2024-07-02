@@ -1,3 +1,4 @@
+
 package booking;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/UserBookingServlet")
-public class UserBookingServlet extends HttpServlet {
+@WebServlet(name = "CreateBookingUserServlet", urlPatterns = {"/CreateBookingUserServlet"})
+public class CreateBookingUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
     private static final String jdbcUsername = "app";

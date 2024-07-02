@@ -1,3 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page import="booking.BOOKING" %>
+<%@ page import="packages.PACKAGE" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="javax.servlet.*" %>
+
+<sql:setDataSource var="myDatasource"
+    driver="org.apache.derby.jdbc.ClientDriver"
+    url="jdbc:derby://localhost:1527/BorneoDB" 
+    user="app"
+    password="app" />
+
+<%
+    if (session == null || session.getAttribute("username") == null) {
+        response.sendRedirect("loginUser.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +29,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.name}!</h1>
+        <h1>Welcome to Borneo Bliss Travel, ${sessionScope.username}!</h1>
         <p>Your one-stop solution for managing all your travel needs around Borneo</p>
     </header>
     <nav>
@@ -23,12 +44,12 @@
                 <span class="booking">Booking</span>
                 <div class="dropdown-content">
                     <a href="create_booking.jsp">Book Now</a>
-                    <a href="check_booking.jsp">Check Booking</a>
+                    <a href="UserCheckBookingServlet">Check Booking</a>
                 </div>
             </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <a href="logout.jsp">Log Out</a>
+        <a href="LogoutServlet">Log Out</a>
     </nav>
     <div class="main">
         <h2>Your Bookings</h2>
@@ -48,13 +69,13 @@
                 <tbody>
                     <c:forEach var="booking" items="${bookings}">
                         <tr>
-                            <td>${booking.bookingID}</td>
-                            <td>${booking.bookingDate}</td>
-                            <td>${booking.travelDate}</td>
-                            <td>${booking.userID}</td>
-                            <td>${booking.packageID}</td>
-                            <td>${booking.bookingPax}</td>
-                            <td>${booking.bookingStatus}</td>
+                            <td><c:out value="${booking.BOOKINGID}"/></td>
+                            <td><c:out value="${booking.BOOKINGDATE}"/></td>
+                            <td><c:out value="${booking.TRAVELDATE}"/></td>
+                            <td><c:out value="${booking.USERID}"/></td>
+                            <td><c:out value="${booking.PACKAGEID}"/></td>
+                            <td><c:out value="${booking.BOOKINGPAX}"/></td>
+                            <td><c:out value="${booking.BOOKINGSTATUS}"/></td>
                         </tr>
                     </c:forEach>
                 </tbody>

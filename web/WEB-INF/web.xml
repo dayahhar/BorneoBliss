@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Other servlet definitions -->
     <servlet>
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>PaymentServlet</servlet-class>
@@ -41,10 +42,6 @@
         <servlet-class>controller.AdminServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserCheckBookingServlet</servlet-name>
-        <servlet-class>UserCheckBookingServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LoginAdminServlet</servlet-name>
         <servlet-class>controller.LoginAdminServlet</servlet-class>
     </servlet>
@@ -60,6 +57,16 @@
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>ProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserBookingServlet</servlet-name>
+        <servlet-class>booking.UserBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserCheckBookingServlet</servlet-name>
+        <servlet-class>UserCheckBookingServlet</servlet-class>
+    </servlet>
+    
+    <!-- Servlet mappings -->
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/PaymentServlet</url-pattern>
@@ -101,10 +108,6 @@
         <url-pattern>/AdminServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserCheckBookingServlet</servlet-name>
-        <url-pattern>/UserCheckBookingServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LoginAdminServlet</servlet-name>
         <url-pattern>/LoginAdminServlet</url-pattern>
     </servlet-mapping>
@@ -119,6 +122,14 @@
     <servlet-mapping>
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/ProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserBookingServlet</servlet-name>
+        <url-pattern>/UserBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserCheckBookingServlet</servlet-name>
+        <url-pattern>/UserCheckBookingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

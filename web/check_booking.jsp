@@ -81,7 +81,16 @@
                             <td><c:out value="${booking.USERID}"/></td>
                             <td><c:out value="${booking.PACKAGEID}"/></td>
                             <td><c:out value="${booking.BOOKINGPAX}"/></td>
-                            <td><c:out value="${booking.BOOKINGSTATUS}"/></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${booking.BOOKINGSTATUS == 'APPROVED'}">
+                                        <a href="payment.jsp?bookingID=${booking.BOOKINGID}">APPROVED</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:out value="${booking.BOOKINGSTATUS}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>

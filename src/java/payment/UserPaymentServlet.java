@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package payment;
 
 import java.io.IOException;
@@ -19,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author dayah
- */
 @WebServlet("/UserPaymentServlet")
 public class UserPaymentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -92,24 +83,48 @@ public class UserPaymentServlet extends HttpServlet {
 
         try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
             String paymentID = generatePaymentID(conn);
-            String query = "INSERT INTO APP.PAYMENT (PAYMENTID, AMOUNT, CARDNUMBER, EXPIRYDATE, CVV, BOOKINGID, USERID, PAYMENTSTATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setString(1, paymentID);
-                stmt.setDouble(2, amount);
-                stmt.setString(3, cardNumber);
-                stmt.setString(4, expiryDate);
-                stmt.setInt(5, cvv);
-                stmt.setString(6, bookingID);
-                stmt.setString(7, userID);
-                stmt.setString(8, "PAID");
+            String paymentQuery = "INSERT INTO APP.PAYMENT (PAYMENTID, AMOUNT, CARDNUMBER, EXPIRYDATE, CVV, BOOKINGID, USERID, PAYMENTSTATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String updateBookingQuery = "UPDATE APP.BOOKING SET BOOKINGSTATUS = 'PAID' WHERE BOOKINGID = ?";
 
-                int rowCount = stmt.executeUpdate();
-                if (rowCount > 0) {
-                    response.sendRedirect("payment_success.jsp");
+            try (PreparedStatement paymentStmt = conn.prepareStatement(paymentQuery);
+                 PreparedStatement bookingStmt = conn.prepareStatement(updateBookingQuery)) {
+                conn.setAutoCommit(false);
+
+                paymentStmt.setString(1, paymentID);
+                paymentStmt.setDouble(2, amount);
+                paymentStmt.setString(3, cardNumber);
+                paymentStmt.setString(4, expiryDate);
+                paymentStmt.setInt(5, cvv);
+                paymentStmt.setString(6, bookingID);
+                paymentStmt.setString(7, userID);
+                paymentStmt.setString(8, "PAID");
+
+                int paymentRowCount = paymentStmt.executeUpdate();
+
+                if (paymentRowCount > 0) {
+                    bookingStmt.setString(1, bookingID);
+                    int bookingRowCount = bookingStmt.executeUpdate();
+
+                    if (bookingRowCount > 0) {
+                        conn.commit();
+                        response.sendRedirect("check_booking.jsp");
+                    } else {
+                        conn.rollback();
+                        request.setAttribute("error", "Failed to update booking status. Please try again.");
+                        request.getRequestDispatcher("payment.jsp").forward(request, response);
+                    }
                 } else {
+                    conn.rollback();
                     request.setAttribute("error", "Failed to process payment. Please try again.");
                     request.getRequestDispatcher("payment.jsp").forward(request, response);
                 }
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+                request.setAttribute("error", "Database error: " + e.getMessage());
+                request.getRequestDispatcher("payment.jsp").forward(request, response);
+            } finally {
+                conn.setAutoCommit(true);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -123,8 +138,8 @@ public class UserPaymentServlet extends HttpServlet {
         boolean isUnique = false;
 
         while (!isUnique) {
-            int randomNum = (int) (Math.random() * 1000);
-            paymentID = "PY" + String.format("%03d", randomNum);
+            int randomNum = (int) (Math.random() * 100);
+            paymentID = "P" + String.format("%02d", randomNum);
             String query = "SELECT COUNT(*) FROM APP.PAYMENT WHERE PAYMENTID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setString(1, paymentID);

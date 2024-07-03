@@ -43,6 +43,7 @@
         <p>Thank you for your payment!</p>
         
         <a href="home.jsp">Back to Homepage</a>
+        <a href="check_booking.jsp">Check Your Booking</a>
     </div>
     <footer>
         <div class="contact-info">

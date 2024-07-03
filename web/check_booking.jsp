@@ -46,7 +46,7 @@
             </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <a href="LogoutServlet">Log Out</a>
+        <a href="logout.jsp">Log Out</a>
     </nav>
     <div class="main">
         <h2>Your Bookings</h2>
@@ -84,7 +84,7 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${booking.BOOKINGSTATUS == 'APPROVED'}">
-                                        <a href="payment.jsp?bookingID=${booking.BOOKINGID}">APPROVED</a>
+                                        <a href="UserPaymentServlet?bookingID=${booking.BOOKINGID}">APPROVED</a>
                                     </c:when>
                                     <c:otherwise>
                                         <c:out value="${booking.BOOKINGSTATUS}"/>

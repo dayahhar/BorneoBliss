@@ -52,7 +52,6 @@
                 <div class="dropdown-content">
                     <a href="create_booking.jsp">Book Now</a>
                     <a href="check_booking.jsp">Check Booking</a>
-                    <a href="payment.jsp">Make Payment</a>
                 </div>
             </div>
         </div>

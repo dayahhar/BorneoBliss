@@ -26,10 +26,6 @@
         <servlet-class>CheckBookingServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>controller.SignupServlet</servlet-class>
     </servlet>
@@ -81,10 +77,6 @@
     <servlet-mapping>
         <servlet-name>CheckBookingServlet</servlet-name>
         <url-pattern>/CheckBookingServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignupServlet</servlet-name>

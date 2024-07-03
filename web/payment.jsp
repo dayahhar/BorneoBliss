@@ -4,6 +4,8 @@
     Author     : dayah
 --%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="javax.servlet.*" %>
@@ -45,7 +47,7 @@
             </div>
         </div>
         <a href="viewProfile.jsp">Profile</a>
-        <a href="logout.jsp">Log Out</a>
+        <a href="LogoutServlet">Log Out</a>
     </nav>
     <div class="main">
         <h2>Make Your Payment</h2>
@@ -65,7 +67,7 @@
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required><br>
             
-            <button type="submit">Submit Payment</button>
+            <input type="submit" value="Pay Now!">
         </form>
     </div>
     <footer>

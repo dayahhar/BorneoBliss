@@ -94,6 +94,10 @@
             out.print(tableHTML);
         %>
     </main>
+    <div class="button-container">
+            <!-- Adjust the path to your JSP file -->
+            <a href="admin.jsp" class="index-btn">Back</a>
+    </div>
 </body>
 <footer>
     <p>&copy; 2024 Borneo Bliss Management System</p>

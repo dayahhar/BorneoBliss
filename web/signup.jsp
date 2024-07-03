@@ -38,6 +38,10 @@
     </nav>
     <div class="main">
         <h2>Sign Up</h2>
+        <% String errorMessage = (String) request.getAttribute("errorMessage");
+           if (errorMessage != null) { %>
+           <p style="color:red;"><%= errorMessage %></p>
+        <% } %>
         <form action="SignupServlet" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -53,6 +57,9 @@
 
             <label for="password">Password:</label>
             <input type="password" id="userpassword" name="userpassword" required>
+            
+            <label for="password">Confirm Password:</label>
+            <input type="password" id="confirmpass" name="confirmpass" required>
            
             <input type="submit" value="Sign Up">
             <p>Go back to log in. <a href="loginUser.jsp">Log in</a></p>

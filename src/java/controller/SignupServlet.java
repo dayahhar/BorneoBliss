@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,15 +36,24 @@ public class SignupServlet extends HttpServlet {
         String phoneNo = request.getParameter("phoneNo");
         String username = request.getParameter("username");
         String userpassword = request.getParameter("userpassword");
+        String confirmpass = request.getParameter("confirmpass");
+       
+        if (!userpassword.equals(confirmpass)) {
+            request.setAttribute("errorMessage", "Passwords do not match.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/signup.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
         
-        // Simulate saving the user data
+         // Simulate saving the user data
         boolean isSaved = saveUser(name, email, phoneNo, username, userpassword);
 
         if (isSaved) {
-            // Redirect to success page
             response.sendRedirect("success_signup.jsp");
         } else {
-            response.sendRedirect("signup.jsp?error=Unable To Sign Up, Please Try Again");
+            request.setAttribute("errorMessage", "Username already exists or unable to sign up. Please try again.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/signup.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

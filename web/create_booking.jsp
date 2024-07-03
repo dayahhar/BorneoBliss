@@ -9,7 +9,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page import="booking.BOOKING" %>
 <%@ page import="packages.PACKAGE" %>
-<%@ page import="booking.UserBookingServlet" %>
+<%@ page import="booking.CreateBookingUserServlet" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="javax.servlet.*" %>

@@ -359,22 +359,27 @@ th {
 
 .chatbot-button-container {
     position: fixed;
-    bottom: 20px;
+    bottom: 50px;
     right: 20px;
     z-index: 1000;
 }
 
 .chatbot-button-container img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
+    background-color: #ff9800; /* Add background color */
+    padding: 10px; /* Adjust padding to maintain aspect ratio and provide space around the image */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    transition: box-shadow 0.3s, background-color 0.3s; /* Smooth transition for hover effects */
 }
 
 .chatbot-button-container img:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #45a049; /* Change the background color on hover */
 }
+
 
 input[type="text"],
 input[type="password"],

@@ -35,7 +35,6 @@
                 session.removeAttribute("message");
             }
         %>
-        
         <button class="add-package-btn" onclick="window.location.href='addPackage.jsp'">Add Package</button>
         <div class="catalog">
             <%

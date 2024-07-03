@@ -42,12 +42,12 @@
         <p>Borneo Bliss Management System</p>
     </header>
     <nav>
-        <a href="admin.html" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
-        <a href="packageManage.html">Packages</a>
-        <a href="bookingApprove.html">Booking</a>
-        <a href="userProfile.html">Profile</a>
-        <a href="report.html">Report</a>
-        <a href="logout.html">Logout</a>
+        <a href="admin.jsp" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
+        <a href="view_packages.jsp">Packages</a>
+        <a href="view_bookings.jsp">Booking</a>
+        <a href="view_users.jsp">Profile</a>
+        <a href="report.jsp">Report</a>
+        <a href="logout.jsp">Logout</a>
     </nav>
     <main>
         <div class="container">

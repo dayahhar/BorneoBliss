@@ -26,7 +26,7 @@
     <main>
         <h2>Reports</h2>
         <div class="report-options">
-            <button onclick="window.location.href='SalesReport.html'" style="margin-left: 40px;"><i class="fas fa-chart-line"></i> Generate Sales Report</button>
+            <button onclick="window.location.href='SalesReport.jsp'" style="margin-left: 40px;"><i class="fas fa-chart-line"></i> Generate Sales Report</button>
         </div><br>
         
         <h3 style="margin-left: 40px;">Booking List</h3>

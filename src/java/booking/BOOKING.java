@@ -3,7 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class BOOKING {
     private String bookingID;
@@ -115,4 +118,34 @@ public class BOOKING {
         }
         return userID;
     }
+    
+    public static List<BOOKING> getAllBookings() {
+        List<BOOKING> bookingList = new ArrayList<>();
+        String jdbcURL = "jdbc:derby://localhost:1527/BorneoDB";
+        String jdbcUsername = "app";
+        String jdbcPassword = "app";
+
+        try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM APP.BOOKING");
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                BOOKING bk = new BOOKING(
+                        rs.getString("bookingID"),
+                        rs.getDate("bookingDate"),
+                        rs.getDate("travelDate"),
+                        rs.getString("userID"),
+                        rs.getString("packageID"),
+                        rs.getInt("bookingPax"),
+                        rs.getString("bookingStatus")
+                );
+                bookingList.add(bk);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving users: " + e.getMessage());
+        }
+        return bookingList;
+    }
+
 }

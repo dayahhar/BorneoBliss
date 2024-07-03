@@ -1,9 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : Jun 30, 2024, 12:04:06 AM
-    Author     : nurna
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -81,6 +75,9 @@
             <p>At its core, the Borneo Bliss Management System aims to empower travelers by providing them with a curated selection of tourist attractions, package deals, and tours, all easily accessible through a sleek and intuitive interface. We ensure that every journey is tailored to meet the unique desires of each individual, enhancing overall satisfaction and enjoyment.</p>
         </div>
     </div>
+        <div class="chatbot-button-container" onclick="window.location.href='chatBox.html'">
+            <img src="image/robotChatbot.png" alt="Chat Icon">
+        </div>
     <footer>
         <div class="contact-info">
             <p>Contact Us: +60 12-345 6789 | info@borneobliss.com</p>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borneo Bliss Chatbot</title>
+    <style>
+body {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4; /* Light background */
+}
+
+.chat-container {
+    background-color: #fff; /* White background */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    width: 500px; /* Fixed width */
+    max-width: 90%; /* Maximum width */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #ff9800; /* Orange color for header */
+    color: #fff;
+    padding: 12px;
+    font-size: 20px;
+    text-align: center;
+    border-top-left-radius: 12px; /* Rounded corners */
+    border-top-right-radius: 12px; /* Rounded corners */
+}
+
+.chat-body {
+    padding: 24px;
+    height: 350px; /* Fixed height with scroll */
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.message {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.user-message .message-text {
+    background-color: #003366; /* Dark blue color for user messages */
+    color: #fff; /* White text color for user messages */
+}
+
+.bot-message {
+    justify-content: flex-start;
+}
+
+.bot-message .message-text {
+    background-color: #ff9800; /* Orange color for bot messages */
+    color: #fff; /* White text color for bot messages */
+}
+
+.message-text {
+    border-radius: 24px; /* Rounded corners */
+    padding: 12px 18px;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+.input-container {
+    padding: 20px;
+    display: flex;
+    background-color: #cccccc; /* Light gray background */
+    border-bottom-left-radius: 12px; /* Rounded corners */
+    border-bottom-right-radius: 12px; /* Rounded corners */
+}
+
+#userInput {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 24px; /* Rounded corners */
+    margin-right: 16px;
+    font-size: 16px;
+}
+
+#submitBtn {
+    background-color: #ff9800; /* Orange color for submit button */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px; /* Rounded corners */
+    cursor: pointer;
+    outline: none;
+}
+
+.button-container {
+    text-align: center;
+    padding: 16px;
+}
+
+.index-btn {
+    background-color: #ff9800; /* Orange color for back button */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 24px; /* Rounded corners */
+    text-decoration: none;
+    display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Borneo Bliss Chatbot</div>
+        <div class="chat-body" id="chatBody">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="submitBtn">Send</button>
+        </div>
+        <div class="button-container">
+            <!-- Adjust the path to your JSP file -->
+            <a href="home.jsp" class="index-btn">Back</a>
+        </div>
+    </div>
+    <script>
+        const chatBody = document.getElementById('chatBody');
+
+        // Simulate initial bot message
+        appendMessage('bot', "Hello! I'm here to assist you with recommending packages based on your activity preferences and budget.");
+
+        // Add event listener to handle form submission
+        document.getElementById('submitBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('userInput').value.trim();
+            if (userInput === '') return;
+            appendMessage('user', userInput);
+            
+            // Send the message to the backend and get the response
+            fetch('http://127.0.0.1:5000/submit_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage('bot', data.response, true);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            document.getElementById('userInput').value = '';
+        });
+
+        function appendMessage(sender, message, isHTML = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+            const messageText = document.createElement('div');
+            messageText.classList.add('message-text');
+            if (isHTML) {
+                messageText.innerHTML = message; // Use innerHTML to render HTML content
+            } else {
+                messageText.textContent = message;
+            }
+            messageElement.appendChild(messageText);
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+</body>
+</html>

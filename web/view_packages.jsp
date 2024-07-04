@@ -23,14 +23,14 @@
         <a href="logout.jsp">Logout</a>
     </nav>
     <main>
-        <h2 style="margin-left:125px">Manage Packages</h2>
+        <h2 style="margin-left:100px">Manage Packages</h2>
         
         <!-- Display success message if available -->
         <% 
             String message = (String) session.getAttribute("message");
             if (message != null) {
         %>
-            <div class="success-message"><%= message %></div>
+        <div class="success-message" style="color: green; margin-left: 100px;"><%= message %></div>
         <% 
                 session.removeAttribute("message");
             }

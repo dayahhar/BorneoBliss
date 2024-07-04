@@ -41,7 +41,7 @@
         
     <div class="message">
         <h1 align="center">Profile Updated Successfully!</h1>
-        <a href="home.jsp"><button class="goback-btn">Go Back to Home Page</button></a>
+        <a href="updateProfile.jsp"><button class="goback-btn">Go Back to Profile Page</button></a>
     </div>
     <footer>
         <div class="contact-info">

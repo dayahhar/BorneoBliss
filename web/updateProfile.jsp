@@ -44,11 +44,15 @@
         
         <div class="main">
         <h2>Update Profile</h2>
+        <c:if test="${not empty param.error}">
+            <div class="error-message">${param.error}</div>
+        </c:if>
         <form action="ProfileServlet" method="post">
             <input type="hidden" name="action" value="update">
+            <input type="hidden" id="username" name="username" value="${sessionScope.username}" >
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="${sessionScope.username}" >
+                <input type="text" id="username" name="username" placeholder="${sessionScope.username}" readonly>
             </div>
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -62,7 +66,7 @@
                 <label for="phoneNo">Phone Number:</label>
                 <input type="text" id="phone" name="phoneNo" value="${sessionScope.phoneNo}" >
             </div>
-            <a href="successUpdateProfile.jsp"><button type="submit" class="book-now-btn">Submit</button></a>       
+            <button type="submit" class="book-now-btn">Submit</button>
         </form>
     </div>
 

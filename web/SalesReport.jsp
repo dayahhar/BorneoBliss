@@ -52,7 +52,7 @@
     <nav>
         <a href="admin.jsp" class="logo-link"><img src="imagesAdmin/logo.png" alt="Home" class="logo"></a>
         <a href="view_packages.jsp">Packages</a>
-        <a href="view_bookings.jsp">Booking</a>
+        <a href="approve_bookings.jsp">Booking</a>
         <a href="view_users.jsp">Profile</a>
         <a href="report.jsp">Report</a>
         <a href="logout.jsp">Logout</a>

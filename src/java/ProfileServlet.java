@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import traveler.TRAVELER;
 
 @WebServlet("/ProfileServlet")
@@ -25,7 +26,7 @@ public class ProfileServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<TRAVELER> travelers = new ArrayList<>();
+        List<TRAVELER> profile = new ArrayList<>();
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM TRAVELER")) {
@@ -37,82 +38,54 @@ public class ProfileServlet extends HttpServlet {
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getString("phoneNo"),
-                    rs.getString("userpassword")
+                    rs.getString("userPassword")
                 );
-                travelers.add(tvl);
+                profile.add(tvl);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        request.setAttribute("travelers", travelers);
+        request.setAttribute("profile", profile);
         request.getRequestDispatcher("viewProfile.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        String userID = request.getParameter("userID");
-        
-        if (action.equals("update")) {
-            String username = request.getParameter("username");
+        String username = (String) session.getAttribute("username");
+
+        if ("update".equals(action) && username != null && !username.isEmpty()) {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phoneNo = request.getParameter("phoneNo");
 
             try (Connection conn = getConnection()) {
-                TRAVELER tvl = TRAVELER.getTravelerByID(userID, conn);
+                String sql = "UPDATE TRAVELER SET name = ?, email = ?, phoneNo = ? WHERE username = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                    pstmt.setString(1, name);
+                    pstmt.setString(2, email);
+                    pstmt.setString(3, phoneNo);
+                    pstmt.setString(4, username);
 
-                if (tvl != null) {
-                    tvl.setUsername(username);
-                    tvl.setName(name);
-                    tvl.setEmail(email);
-                    tvl.setPhoneNo(phoneNo);
+                    int rowsUpdated = pstmt.executeUpdate();
+                    if (rowsUpdated > 0) {
+                        // Update session attributes
+                        session.setAttribute("name", name);
+                        session.setAttribute("email", email);
+                        session.setAttribute("phoneNo", phoneNo);
 
-                    try (PreparedStatement pstmtUpdate = conn.prepareStatement(
-                            "UPDATE TRAVELER SET username = ?, name = ?, email = ?, phoneNo = ? WHERE userID = ?")) {
-                        pstmtUpdate.setString(1, tvl.getUsername());
-                        pstmtUpdate.setString(2, tvl.getName());
-                        pstmtUpdate.setString(3, tvl.getEmail());
-                        pstmtUpdate.setString(4, tvl.getPhoneNo());
-                        pstmtUpdate.setString(5, userID); // This line is necessary to set the userID
-
-                        int rowsUpdated = pstmtUpdate.executeUpdate();
-                        if (rowsUpdated > 0) {
-                            System.out.println("Profile updated successfully.");
-                        } else {
-                            System.out.println("Failed to update profile.");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        response.sendRedirect("successUpdateProfile.jsp");
+                    } else {
+                        response.sendRedirect("updateProfile.jsp?error=Failed to update profile");
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                response.sendRedirect("updateProfile.jsp?error=Exception occurred: " + e.getMessage());
             }
+        } else {
+            response.sendRedirect("updateProfile.jsp?error=Invalid action or username");
         }
-
-        // After update, refresh the list of travelers
-        List<TRAVELER> travelers = new ArrayList<>();
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM TRAVELER")) {
-
-            while (rs.next()) {
-                TRAVELER tvl = new TRAVELER(
-                    rs.getString("userID"),
-                    rs.getString("username"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("phoneNo"),
-                    rs.getString("userpassword")
-                );
-                travelers.add(tvl);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        request.setAttribute("travelers", travelers);
-        request.getRequestDispatcher("successUpdateProfile.jsp").forward(request, response);
     }
 }

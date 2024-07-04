@@ -67,15 +67,6 @@
                     </div>
                 </div>
             </section>
-                
-            <div class="card recent-activity">
-                <h1>Recent Activity</h1>
-                <ul>
-                    <c:forEach items="${requestScope.recentActivities}" var="activity">
-                        <li><c:out value="${activity}"/></li>
-                    </c:forEach>
-                </ul>
-            </div>
         </section>
         <section class="notifications">
             <h3>Notifications</h3>
